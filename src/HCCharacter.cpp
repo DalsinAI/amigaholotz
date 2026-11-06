@@ -739,12 +739,12 @@ bool HCCharacter::Act(u32 act)
 	if (actions & HCCA_UP && state != HCCS_HANG)
 	{
 		// Up requested
-		if (map->Cell(row, col)->Actions() & HCACTION_UP != 0)
+		if ((map->Cell(row, col)->Actions() & HCACTION_UP) != 0)
 		{
 			State(HCCS_UP);
 			// Can go up in the current cell
-			if (map->Cell(row - 1, col)->Actions() & HCACTION_UP ||
-					map->Cell(row - 1, col)->Actions() & HCACTION_FALL)
+			if ((map->Cell(row - 1, col)->Actions() & HCACTION_UP) ||
+					(map->Cell(row - 1, col)->Actions() & HCACTION_FALL))
 			{
 				// Can go up in the upper cell or cell above empty, continue
 				a.y = -map->Gravity() - aMax.y;
@@ -873,10 +873,10 @@ void HCCharacter::State(HCCharacterState newState)
 u32 HCCharacter::Load(JRW &file)
 {
 	if (0 == file.ReadLE32(&subtype) ||
-			0 == file.ReadLE32((u32 *)&pos.x) ||
-			0 == file.ReadLE32((u32 *)&pos.y) ||
-			0 == file.ReadLE32((u32 *)&vMax.x) ||
-			0 == file.ReadLE32((u32 *)&vMax.y) ||
+			0 == file.ReadLE32(&pos.x) ||
+			0 == file.ReadLE32(&pos.y) ||
+			0 == file.ReadLE32(&vMax.x) ||
+			0 == file.ReadLE32(&vMax.y) ||
 			0 == file.ReadLE32(&maxJumpRows))
 	{
 		fprintf(stderr, "Error reading character's common parameters.\n");
@@ -891,10 +891,10 @@ u32 HCCharacter::Load(JRW &file)
 u32 HCCharacter::Save(JRW &file)
 {
 	if (0 == file.WriteLE32(&subtype) ||
-			0 == file.WriteLE32((u32 *)&pos.x) ||
-			0 == file.WriteLE32((u32 *)&pos.y) ||
-			0 == file.WriteLE32((u32 *)&vMax.x) ||
-			0 == file.WriteLE32((u32 *)&vMax.y) ||
+			0 == file.WriteLE32(&pos.x) ||
+			0 == file.WriteLE32(&pos.y) ||
+			0 == file.WriteLE32(&vMax.x) ||
+			0 == file.WriteLE32(&vMax.y) ||
 			0 == file.WriteLE32(&maxJumpRows))
 	{
 		fprintf(stderr, "Error writing character's common parameters.\n");

@@ -415,7 +415,7 @@ u32 HCLevel::Load(JRW &file, const char *filename)
 
 		for (s32 i = 0; i < numEnemies; ++i)
 		{
-			if (0 != file.ReadLE32((s32 *)&enemyType))
+			if (0 != file.ReadLE32(&enemyType))
 			{
         // Lets the file at ist original position
         file.Seek(-4, SEEK_CUR);
@@ -745,11 +745,8 @@ void HCLevel::Pos(float xPos, float yPos)
 	dy = yMap - yMapOrg;
 
 	// Now move the objects
-	float t1, t2;
 	for (s32 i = 0; i < numObjects; ++i)
 	{
-		t1 = objects[i]->X();
-		t2 = objects[i]->Y();
 		
 		objects[i]->Pos(objects[i]->X() + (s32)dx, 
 										objects[i]->Y() + (s32)dy);

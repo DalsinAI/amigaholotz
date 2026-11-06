@@ -49,7 +49,7 @@ HCPreferences prefs;
 
 void HCed::PrintUsage(char *program)
 {
-	fprintf(stderr, "HCed v1.3. (C) Juan Carlos Seijo Pérez - 2004.\n\n");
+	fprintf(stderr, "HCed v1.3. (C) Juan Carlos Seijo Perez - 2004.\n\n");
 	fprintf(stderr, "Usage: %s [-t themeName] [story name] [levelToLoad]", program);
 	fprintf(stderr, " [-h] [-r numRows] [-c numColumns]");
 	fprintf(stderr, " [-f]ullscreen [-w]indowed [--fps nnn] [-mWxHxBPP]\n");
@@ -1036,7 +1036,7 @@ bool HCed::Init(int argc, char **argv)
 	{
 		fprintf(stderr, 
 						"Could not find data directory.\n\n"
-						"Posible solutions are:\n"
+						"Possible solutions are:\n"
 						" - Open folder JLib-1.3.1/Games/HolotzCastle and double.\n"
 						"   click 'holotz-castle' application icon.\n"
 						" - Maybe you did 'make' but didn't do 'make install'.\n"

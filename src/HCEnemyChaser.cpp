@@ -561,7 +561,7 @@ s32 HCEnemyChaser::UpdateChase()
 			chased->State() == HCCS_HANG ||
 			(abs(curRow - r) + abs(curCol - c) <= searchDepth && 0 == GoTo(r, c)))
 		{
-		if (chasePath[chaseIndex].col != curCol || chasePath[chaseIndex].row != curRow && chaseIndex < searchDepth - 1)
+		if ((chasePath[chaseIndex].col != curCol || chasePath[chaseIndex].row != curRow) && chaseIndex < searchDepth - 1)
 		{
 			// Updates the chase index within the path when the row or column changes
 			++chaseIndex;

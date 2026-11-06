@@ -41,7 +41,6 @@ bool HCRope::Init(float p, s32 a, u32 l, HCTheme &theme)
 	amplitude = abs(a) < length * theme.Rope(subtype)[HCRDT_MIDDLE].Height() ? abs(a) : length * theme.Rope(subtype)[HCRDT_MIDDLE].Height();
 
 	s32 i;
-	float y;
 
 	JDELETE_ARRAY(middle);
 	middle = new JImage [length];
@@ -52,12 +51,10 @@ bool HCRope::Init(float p, s32 a, u32 l, HCTheme &theme)
 	for (i = 0; i < length; ++i)
 	{
 		middle[i].Ref(theme.Rope(subtype)[HCRDT_MIDDLE]);
-		y = top.Y() + top.Height() + (i * middle[i].Height());
 		middle[i].Pos(top.X() + (top.Width()/2) - (middle[i].Width()/2), pos.y);
 	}
 	
 	edge.Ref(theme.Rope(subtype)[HCRDT_EDGE]);
-	y = top.Y() + top.Height() + (i * middle[0].Height());
 	edge.Pos(top.X() + (top.Width()/2) - (edge.Width()/2), pos.y);
 
 	// 25 fps resolution
@@ -127,12 +124,12 @@ void HCRope::Pos(float x, float y)
 
 u32 HCRope::Load(JRW &file)
 {
-	if (0 == file.ReadLE32((u32 *)&period) ||
+	if (0 == file.ReadLE32(&period) ||
 			0 == file.ReadLE32(&amplitude) ||
 			0 == file.ReadLE32(&length) ||
 			0 == file.ReadLE32(&subtype) ||
-			0 == file.ReadLE32((u32 *)&pos.x) ||
-			0 == file.ReadLE32((u32 *)&pos.y))
+			0 == file.ReadLE32(&pos.x) ||
+			0 == file.ReadLE32(&pos.y))
 	{
 		fprintf(stderr, "Error reading rope parameters.\n");
 		
@@ -161,12 +158,12 @@ u32 HCRope::Load(JRW &file, HCTheme &theme)
 
 u32 HCRope::Save(JRW &file)
 {
-	if (0 == file.WriteLE32((u32 *)&period) ||
+	if (0 == file.WriteLE32(&period) ||
 			0 == file.WriteLE32(&amplitude) ||
 			0 == file.WriteLE32(&length) ||
 			0 == file.WriteLE32(&subtype) ||
-			0 == file.WriteLE32((u32 *)&pos.x) ||
-			0 == file.WriteLE32((u32 *)&pos.y))
+			0 == file.WriteLE32(&pos.x) ||
+			0 == file.WriteLE32(&pos.y))
 	{
 		fprintf(stderr, "Error writing rope parameters.\n");
 		

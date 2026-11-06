@@ -143,7 +143,7 @@ public:
    */
   void CurFrame(const u32 newFrame) 
   {
-    if (newFrame >= 0 && newFrame < numFrames) curFrame = newFrame;
+    if (newFrame < numFrames) curFrame = newFrame;
   }
 
   /** Devuelve el frame en la posición indicada.

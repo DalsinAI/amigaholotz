@@ -115,7 +115,7 @@ class JTree : public JObject
 
 	/** Destroys the tree. Deletes created nodes (BUT NOT its contents if they are pointers)
 	 */
-	~JTree<T>()
+	~JTree()
 	{
 		nodes.clear();
 	}

@@ -57,7 +57,7 @@ JApp::JApp(const JString &strTitle, s32 w, s32 h, bool fullScr, s32 _depth, u32 
 }
 
 // Inicializa la aplicación
-bool JApp::Init()
+bool JApp::Init(s32 argc, char **argv)
 {
   if (-1 == SDL_Init(SDL_INIT_EVERYTHING))
   {

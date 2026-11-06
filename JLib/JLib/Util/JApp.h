@@ -175,7 +175,7 @@ public:
    * to do the SDL initialization stuff.
    * @return <b>true</b> if the creation succeded <b>false</b> if not.
    */
-  virtual bool Init();
+  virtual bool Init(s32 argc = 0, char **argv = 0);
 
   /** Updates the application objects (graphics, sounds, A.I., etc.). Must be implemented in the child class.
    * JApp will call this method before Draw in the child class (by means of MainLoop().

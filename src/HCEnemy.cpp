@@ -130,7 +130,9 @@ s32 HCEnemy::Update()
 
 u32 HCEnemy::Load(JRW &file, HCTheme &theme, HCMap *_map)
 {
-	if (0 == file.ReadLE32((s32 *)&type) ||
+	u32 typeNum;
+
+	if (0 == file.ReadLE32(&typeNum) ||
 			0 == file.ReadLE32(&param1) ||
 			0 == file.ReadLE32(&param2) ||
 			0 != HCCharacter::Load(file))
@@ -141,7 +143,7 @@ u32 HCEnemy::Load(JRW &file, HCTheme &theme, HCMap *_map)
 
 	bool ret = false;
 
-	switch (type)
+	switch (typeNum)
 	{
 	default:
 	case HCENEMYTYPE_BALL:
@@ -170,6 +172,8 @@ u32 HCEnemy::Load(JRW &file, HCTheme &theme, HCMap *_map)
 		return 2;
 	}
 
+	type = HCEnemyType(typeNum);
+
 	// Adjusts the sprite's framerate according to 1st param
 	for (s32 i = 0; i < HCCS_COUNT; ++i)
 	{
@@ -181,7 +185,9 @@ u32 HCEnemy::Load(JRW &file, HCTheme &theme, HCMap *_map)
 
 u32 HCEnemy::Save(JRW &file)
 {
-	if (0 == file.WriteLE32((s32 *)&type) ||
+	u32 typeNum = type;
+
+	if (0 == file.WriteLE32(&typeNum) ||
 			0 == file.WriteLE32(&param1) ||
 			0 == file.WriteLE32(&param2) ||
 			0 != HCCharacter::Save(file))

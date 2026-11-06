@@ -85,10 +85,10 @@ typedef unsigned long long int u64;
 // use the 8bit and 16bit macros listed here, and using any of the 32-bit macros in this case could
 // translate in a segmentation fault during execution. Notice that he 'double' and 'long' types are normally 
 // twice the size of the architecture
-#define JCAST_8_TO_VOIDPTR(val)  ((void *)size_t(*((u8 *)&(val))))
-#define JCAST_16_TO_VOIDPTR(val) ((void *)size_t(*((u16 *)&(val))))
-#define JCAST_32_TO_VOIDPTR(val) ((void *)size_t(*((u32 *)&(val))))
-#define JCAST_64_TO_VOIDPTR(val) ((void *)size_t(*((u64 *)&(val))))
+#define JCAST_8_TO_VOIDPTR(val)  ((void *)(size_t)(val))
+#define JCAST_16_TO_VOIDPTR(val) ((void *)(size_t)(val))
+#define JCAST_32_TO_VOIDPTR(val) ((void *)(size_t)(val))
+#define JCAST_64_TO_VOIDPTR(val) ((void *)(size_t)(val))
 
 #define JCAST_S8_TO_VOIDPTR(val) JCAST_8_TO_VOIDPTR((val))
 #define JCAST_U8_TO_VOIDPTR(val) JCAST_8_TO_VOIDPTR((val))
@@ -101,7 +101,7 @@ typedef unsigned long long int u64;
 #define JCAST_U64_TO_VOIDPTR(val) JCAST_64_TO_VOIDPTR((val))
 #define JCAST_DOUBLE_TO_VOIDPTR(val) JCAST_64_TO_VOIDPTR((val))
 
-#define JCAST_VOIDPTR_TO_TYPE(p, type) (*((type *)&(p)))
+#define JCAST_VOIDPTR_TO_TYPE(p, type) ((type)(size_t)(p))
 #define JCAST_VOIDPTR_TO_S8(p) JCAST_VOIDPTR_TO_TYPE(p, s8)
 #define JCAST_VOIDPTR_TO_U8(p) JCAST_VOIDPTR_TO_TYPE(p, u8)
 #define JCAST_VOIDPTR_TO_S16(p) JCAST_VOIDPTR_TO_TYPE(p, s16)

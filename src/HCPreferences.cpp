@@ -219,7 +219,7 @@ s32 HCPreferences::Save(const char *filename)
 	}
 
 	// Saves the preferences
-	if (0 > f.Printf("language=%d\nvideo=%d\nbpp=%d\nfullscreen=%d\naudio=%d\ndifficulty=%d", curLang, videoMode, bpp, fullscreen ? 1 : 0, sound ? 1 : 0, difficulty))
+	if (0 == f.Printf("language=%d\nvideo=%d\nbpp=%d\nfullscreen=%d\naudio=%d\ndifficulty=%d", curLang, videoMode, bpp, fullscreen ? 1 : 0, sound ? 1 : 0, difficulty))
 	{
 		// Incorrect file
 		return 2;

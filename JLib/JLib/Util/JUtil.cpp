@@ -209,7 +209,6 @@ void JDumpImage(JImage *img, s32 n)
 					s->w, s->h, fmt->BitsPerPixel, fmt->colorkey, fmt->alpha, 
 					s->flags & SDL_SRCALPHA ? "yes" : "no", 
 					s->flags & SDL_SRCCOLORKEY ? "yes" : "no",
-					s->flags & SDL_RLEACCEL ? "yes" : "no",
 					s->flags & SDL_RLEACCEL ? "yes" : "no");
 	fprintf(stderr, 
 					"RGBAmask: R: 0x%08x G: 0x%08x B: 0x%08x A: 0x%08x\n", 

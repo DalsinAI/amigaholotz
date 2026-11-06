@@ -82,8 +82,8 @@ bool HCObject::Init(HCTheme *theme)
 u32 HCObject::Load(JRW &file)
 {
 	if (0 == file.ReadLE32(&subtype) ||
-			0 == file.ReadLE32((u32 *)&pos.x) ||
-			0 == file.ReadLE32((u32 *)&pos.y))
+			0 == file.ReadLE32(&pos.x) ||
+			0 == file.ReadLE32(&pos.y))
 	{
 		fprintf(stderr, "Error loading the object.\n");
 			
@@ -98,8 +98,8 @@ u32 HCObject::Load(JRW &file)
 u32 HCObject::Save(JRW &file)
 {
 	if (0 == file.WriteLE32(&subtype) ||
-			0 == file.WriteLE32((u32 *)&pos.x) ||
-			0 == file.WriteLE32((u32 *)&pos.y))
+			0 == file.WriteLE32(&pos.x) ||
+			0 == file.WriteLE32(&pos.y))
 	{
 		fprintf(stderr, "Error saving the object.\n");
 			

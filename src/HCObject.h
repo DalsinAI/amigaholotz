@@ -118,7 +118,7 @@ class HCObject : public JDrawable
 	/** Gets this object's position.
 	 * @return Object's position.
 	 */
-	virtual const JVector & Pos() {return pos;}
+	virtual const JVector & Pos() const {return pos;}
 
 	/** Returns the normal sprite.
 	 * @return The normal sprite.

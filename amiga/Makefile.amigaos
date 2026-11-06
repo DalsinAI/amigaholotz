@@ -15,7 +15,8 @@
 # FreeType) stand in. DEPS has the Team's static FreeType, libpng and zlib
 # (/mnt/amigachrome/team2/deps/m68k-amigaos). SDL_RWFromFile is plain
 # stdio (amiga/amiga_rwops.c, -Wl,--wrap): sdl12-compat's does not come
-# back on OpenGPU. chdir() takes ".." (amiga/amiga_chdir.c, -Wl,--wrap).
+# back on OpenGPU. chdir() takes ".." and getcwd() names
+# the drawer from its lock (amiga/amiga_chdir.c, -Wl,--wrap).
 
 STOVE   ?= $(HOME)/CradleLab/toolchain/openamigagcc-16.2.0-open4-x86_64-linux
 NDK     ?= $(HOME)/CradleLab/gfopensdk/OpenNDK/Include_H
@@ -39,7 +40,7 @@ INC     = -Iamiga/include/SDL -Iamiga/include -Iamiga/sdl_ttf -Isrc -IJLib \
           -I$(SDLKIT)/include/SDL -I$(DEPS)/include -I$(DEPS)/include/freetype2
 CFLAGS  = -noixemul $(OPT) $(CPU) -fno-common -MMD -MP
 CXXFLAGS = $(CFLAGS) $(DEFS) $(INC) -std=gnu++98 -fno-strict-aliasing -ffast-math -w
-LDFLAGS = -noixemul $(CPU) -Wl,--wrap=SDL_RWFromFile -Wl,--wrap=chdir
+LDFLAGS = -noixemul $(CPU) -Wl,--wrap=SDL_RWFromFile -Wl,--wrap=chdir -Wl,--wrap=getcwd
 LIBS    = -L$(SDLKIT)/lib -L$(DEPS)/lib -lSDL -lfreetype -lpng -lz -lbz2 -lpthread -lm
 
 GRAPHICS = JLib/JLib/Graphics
@@ -85,11 +86,13 @@ $(OBJDIR)/amiga/%.o: amiga/%.c
 
 # The drawer: the program, the game's res/ (its pictures, sounds, levels
 # and the font; the saves and preferences go there too), ReadMe and the
-# licences.
+# licences. The sounds are made 16-bit PCM (amiga/tools/msadpcm2pcm.py:
+# they are MS ADPCM, which amiga/sdl_mixer_lite.c does not read).
 dist: $(BUILD)/$(PROG) $(ICONS) AMIGA_PORT.md
 	rm -rf $(OUT) && mkdir -p $(OUT)
 	cp $(BUILD)/$(PROG) $(OUT)/
 	cp -R res $(OUT)/res
+	python3 amiga/tools/msadpcm2pcm.py $(OUT)/res/sound
 	cp AMIGA_PORT.md $(OUT)/ReadMe
 	cp LICENSE.txt $(OUT)/LICENSE.txt
 	cp amiga/sdl_ttf/COPYING $(OUT)/SDL_ttf-COPYING.txt

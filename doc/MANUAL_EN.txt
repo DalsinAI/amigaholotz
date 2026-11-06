@@ -1,0 +1,165 @@
+Holotz's Castle - Manual
+------------------------
+
+HISTORY:
+08/02/2005 - Second edition.
+24/10/2004 - First edition.
+
+1. Quick Start
+
+1.1. Windows
+
+	 1. Unzip HC_win32-1.3.zip
+	 2. After the extraction process, a folder named HC appears.
+	 3. Explore into that folder.
+	 4. Double click holotz-castle.exe
+	 5. Enjoy!
+
+	 NOTA: To create an application short cut is necessary to fill the field 'Run in' the
+   full path to the HC folder, in the short cut properties dialog.
+
+1.2. Linux (source code)
+
+	 1. Do 'tar -zxf HC_JLib_Linux_Win32-1.3.tar.gz' (without quotes)
+	 2. Follow the instructions in the file README.txt under the directory 'HC_JLib_Linux_Win32-1.3'.
+	 3. Do 'cd Games/HolotzCastle'
+	 4. Do './holotz-castle'
+	 5. Enjoy!
+
+2. Walk-around
+
+	 To show the help in the main menu or playing, press F1. Th ehelp is not available during the dialog
+   scenes.
+
+   The first two scenes you see when you select 'New game' in the main menu is a dialog between Ybelle and
+   Ludar, the main characters of the game. 
+	 
+	 You can skip the dialog balloons by pressing space. You can skip the entire scene by pressing enter. 
+
+	 You can switch to the main menu whenever you want while playing but then if you select the option 'Continue game' 
+	 you will start at the beginning of the last level played.
+   Said this, as a rule of thumb: if you want to save, do it when you just entered a new level.
+
+	 To pause a game and relax, press 'p'. Pressing 'p' again gets you back to the game.
+
+   At the third level you can control Ybelle. Try moving it with the arrow keys. Try jumping with the space bar.
+   The more you keep pressed it the more you can jump.
+
+	 The remaining time to complete a level is displayed in the top left corner of the screen.
+   
+	 The remaining objects to unlock the exit of a level are displayed in the top right corner of the screen.
+
+	 When you collect all the objects, the exit activates (it moves faster) you have to move toward it and when you
+   are bellow, jump to exit the level.
+	 
+	 If you find too hard or too easy the levels, try to adjust the difficulty in the main menu (Options > Difficulty).
+
+3. HCed
+
+	HCed is the level editor for Holotz's Castle.
+
+	To launch it:
+		- In Linux, run './holotz-castle-editor'
+			
+		- In Windows, double click over the icon holotz-castle-editor.exe
+
+	Main window:
+
+		The title of the window contains the file being used when you save the current level.
+
+		In the left side are shown the icons:
+
+			- Normal floor
+			- Continuous floor
+			- Ladder
+			- Bar
+			- Breakable floor
+			- Object
+			- Rope
+			- Start position
+			- End position
+			- Enemies
+			- Save
+			- Load/Create story
+			- Exit
+		
+		Under those, there are these indicators:
+			
+			- Level time.
+			- Gravity.
+			- X Speed.
+			- Y Speed.
+			- Jump amount.
+			- Map size (rows x columns)
+	
+	Mouse:
+
+		Left button: Draws the current object in the map.
+		Central button or left & right buttons at the same time: Deletes the object under the pointer.
+
+	Keys:
+
+		c : adds blank column to the right
+		Shift + c : removes column to the right
+		Ctrl + c : adds blank column to the left
+		Ctrl + Mayús + c : removes column to the left
+		r : adds blank row bellow
+		Shift + r : removes row bellow
+		Ctrl + r : adds blank row upside
+		Ctrl + Mayús + r : removes row upside
+		+ : increase time (based upon hardest difficulty level)
+		- : decrease time
+		g : increase gravity
+            Shift + g: decrease gravity
+		x : increase x speed
+            Shift + x: decrease x speed
+		y : increase y speed
+            Shift + y: decrease y speed
+		j : increase jump amount
+		Shift + j : decrease jump amount
+		
+		With object/rope/start pos./enemy:
+			Ctrl - Adjusts to map.
+		
+		Adding ropes:
+			Select rope icon.
+			Position rope in map.
+			Without realeasing the left mouse button, press 'Alt'.
+			Mover updown mouse to set rope length.
+			Without realeasing the left mouse button, press 'Shift' to adjust the rope period.
+
+4. FAQ
+
+   Q. I double-click on HC.exe but nothing happens!
+   A. Open the file called stderr.txt in the same folder (or check the console messages under Linux).
+      The last lines tell the problem initializing the game. Find a solution in the rest of the FAQ
+      for your problem.
+
+   Q. The game runs slowly what can I do?
+   A. Select a lower resolution video mode in the main menu:
+      Options > Video > Size > [mode] 
+      Maybe your graphics card supports 320x200 mode, that's a chance to 
+      revive the feelings of the old-fashined video games.
+
+   Q. I'm running Linux with ALSA but don't hear any sound.
+   A. By default ALSA mutes the sound. Try to check the volume with alsamixer or aumix or kmix.
+      If another application is using the the sound device you will not be able to hear sounds
+      until you close it.
+
+   Q. Sound under Windows is fake!
+   A. Despite the fact that the soundtrack is not very audible by itself :D, maybe the problem is
+      in the drivers of your soundcard. Get the last version of them and try again.
+
+   Q. In 8 bpp mode some parts of the level are black at all!
+   A. That error is fixed in v1.2 on higher, check the web (www.mainreactor.net) for the last release.
+
+	 Q. I didn't find an answer to my problem in this FAQ, what should I do?
+	 A. You can e-mail me to the direction bellow. Don't forget to attach the file called stderr.txt which is
+      in the same folder as the executable (HC.exe). It contains information about your graphics card and
+      the problem with the game.
+   
+	 Q. I'm an artist/musician/programmer/producer/90-60-90-model and I want to contribute to the cause. What can I do?
+   A. Oh, you can e-mail me at the direction bellow (if you are model we have to have a personal date first :) )
+
+
+Juan Carlos Seijo Pérez (jacob@mainreactor.net)

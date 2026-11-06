@@ -1,0 +1,48 @@
+# Makefile Para Holotz's Castle. (C) Juan Carlos Seijo Pérez - 2004.
+# Makefile for Holotz's Castle.
+
+
+
+HC_DATA = res/
+HCED_DATA = HCedHome/res/
+
+DEFINES = -DHC_DATA_DIR=\"$(HC_DATA)\" -DHCED_DATA_DIR=\"$(HCED_DATA)\"
+
+all: JLib HC HCed
+
+HC_OBJ_MAIN=HolotzCastle.o
+HC_OBJS=HCUtil.o HCTimer.o HCLoadSaveSlot.o HCPlaylist.o HCPreferences.o HCTheme.o HCText.o \
+				HCBreak.o HCRope.o HCContFloor.o HCObject.o HCMap.o HCExit.o HCCharacter.o \
+		    HCEnemy.o HCEnemyBall.o HCEnemyChaser.o HCEnemyMaker.o HCEnemyRandom.o \
+				HCEnemyStatic.o HCScriptAction.o HCScriptBlock.o HCScript.o HCLevel.o
+
+HCED_OBJ_MAIN=HCed.o
+
+# Definir -D_JLIB_DEBUG para debug con JLib. Ponerlo también en el Makefile de JLib.
+# Define -D_JLIB_DEBUG for JLib debug mode. Put it also in JLib's Makefile.
+
+CFLAGS=-O3 -Wshadow -ffast-math -c -I/mingw/include/SDL -I../JLib -I. -I/mingw/include -I/usr/local/include -I/usr/include $(shell sdl-config --cflags) -D_WIN32 -DWIN32
+
+LDFLAGS=-s -L/mingw/lib -L/usr/lib -L/usr/local/lib -mwindows -ffast-math -lglu32 -lopengl32 -lgdi32 -lcomctl32 -lwsock32 -lmingw32 -lSDLmain -lSDL -lSDL_image -lSDL_mixer -lSDL_ttf -lzdll
+
+JLib: 
+	make -C ../JLib -f Makefile.win32;
+
+%.o: %.cpp %.h
+	g++ $(CFLAGS) $(DEFINES) $< -o $@
+
+HC: $(HC_OBJS) $(HC_OBJ_MAIN) ../JLib/libJLib.a
+	g++ $? -o $@ $(LDFLAGS);\
+	mv $@.exe ../holotz-castle.exe
+
+# HCed (Holotz's Castle editor).
+HCed: $(HC_OBJS) $(HCED_OBJ_MAIN) ../JLib/libJLib.a
+	g++ $? -o $@ $(LDFLAGS);\
+	mv $@.exe ../holotz-castle-editor.exe
+
+.PHONY: clean
+clean:
+	rm *.o
+	rm ../holotz-castle.exe
+	rm ../holotz-castle-editor.exe
+

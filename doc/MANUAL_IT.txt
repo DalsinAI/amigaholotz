@@ -1,0 +1,170 @@
+Il castello di Holotz - Manuale
+------------------------
+
+STORICO DELLE EDIZIONI: 
+08/02/2005 - Seconda edizione
+24/10/2004 - Prima editione
+
+1. Guida volece
+
+1.1. Windows
+
+	 1. Decomprimi HC_win32-1.3.zip
+	 2. Dopo l'estrazione troverari una cartella 'HC'.
+	 3. Entra in quella cartella.
+	 4. Fai doppio click su holotz-castle.exe
+	 5. Divertiti!
+
+     NOTA: Per creare un collegamento al programma è necessario riempire la casella "Esegui in"
+   con il percorso completo della cartella del gioco.
+
+1.2. GNU/Linux (da codice sorgente)
+
+	 1. Esegui 'tar -zxf HC_JLib_Linux_Win32-1.3.tar.gz' (senza gli apici) da terminale
+	 2. Segui le istruzioni nel file README.txt nella directory 'HC_JLib_Linux_Win32-1.3'.
+	 3. Scrivi 'cd Games/HolotzCastle' da terminale
+	 4. Esegui './holotz-castle'
+	 5. Divertiti!
+
+2. Introduzione
+
+     Per vedere la schermata di aiuto nel menù principale o mentre stai giocando premi F1. L'aiuto non è disponibile
+   durante i dialoghi.
+
+     Le prime due scene che vedrai appena dopo avere selezionato 'Nuova partita' dal menù principale è un dialogo tra
+   Ybelle e Ludar, i personaggi principali del gioco.
+	 
+	 Puoi saltare le singole battute dei dialoghi prementi 'spazio'; per saltare dialoghi interi premi 'invio'.
+
+     In ogni momento puoi tornare al menù principale e da lì, premendo 'Continua partita' ricomincerai da dove hai interrotto
+   la partita. È buona regola salvare una partita subito dopo essere entrato in un nuovo livello.
+
+	 Per mettere il gioco in pausa ed andare a fare due passi premi 'p'. Ripremi 'p' quando vuoi ricominciare
+   a giocare.
+
+     Al terzo livello potrai controllare Ybelle. Puoi muoverlo con i tasti 'freccia' e farlo saltare con il tasto 'spazio'.
+   Più tieni premuto il tasto 'spazio' e più alto sarà il salto.
+
+	 Il tempo disponibile per completare il livello è sempre visibile nell'angolo in alto a sinistra dello schermo.
+   
+	 Gli oggetti ancora da raccogliere per poter uscire dal livello sono mostrati nell'angolo in alto a destra dello
+   schermo.
+
+     Quando avrai raccolto tutti gli oggetti si attiverà l'uscita. Dovrai spostarti verso di essa e quando ci sarai sotto
+   salta e passerai al quadro successivo.
+
+     Se trovi uno o più livelli troppo difficili puoi regolare la difficoltà dal menù principale (Opzioni > Difficoltà).	 
+
+3. HCed
+
+	HCed è l'editor di livelli per "Holotz's Castle".
+
+	Per eseguirlo:
+		- In GNU/Linux, lancia './holotz-castle-editor' da terminale
+			
+		- In Windows, fai doppio-click sull'icona holotz-castle-editor.exe
+
+	Finestra principale:
+
+        Nel titolo della finestra ci sarà il nome del file in cui sarà salvato il livello.
+
+        Nella parte sinistra della finestra ci sono le seguenti icone:
+
+            (Non trodotto)
+			- Normal floor
+			- Continuous floor
+			- Ladder
+			- Bar
+			- Breakable floor
+			- Object
+			- Rope
+			- Start position
+			- End position
+			- Enemies
+			- Save
+			- Load/Create story
+			- Exit
+		
+		Al di sotto ci sono questi indicatori:
+			
+            (Non trodatto)
+			- Level time.
+			- Gravity.
+			- X Speed.
+			- Y Speed.
+			- Jump amount.
+			- Map size (rows x columns)
+	
+	Mouse:
+
+		Tasto sinistro: disegna l'oggetto selezionato sulla mappa.
+		Tasto centrale (o tasto destro e sinistro premuti insieme): cancella l'oggetto sotto il puntatore.
+
+	Tasti:
+
+        (non tradotto)
+		c : adds blank column to the right
+		Shift + c : removes column to the right
+		Ctrl + c : adds blank column to the left
+		Ctrl + Mayús + c : removes column to the left
+		r : adds blank row bellow
+		Shift + r : removes row bellow
+		Ctrl + r : adds blank row upside
+		Ctrl + Mayús + r : removes row upside
+		+ : increase time (based upon hardest difficulty level)
+		- : decrease time
+		g : increase gravity
+            Shift + g: decrease gravity
+		x : increase x speed
+            Shift + x: decrease x speed
+		y : increase y speed
+            Shift + y: decrease y speed
+		j : increase jump amount
+		Shift + j : decrease jump amount
+		
+		With object/rope/start pos./enemy:
+			Ctrl - Adjusts to map.
+		
+		Per aggiungere corde:
+			Seleziona l'icona della corda.
+			Posiziona la corda nella mappa.
+			*Senza* rilasciare il tasto sinistro del mouse premi il tasto 'Alt'
+			Muovi in sù o in giù il mouse per allungare o accorciare la corda.
+			*Senza* rilasciare il tasto sinistro del mouse premi 'Shift'
+		        per selezionare il periodo d'oscillazione della corda.
+
+4. FAQ -- Domande più frequenti
+
+   D. Faccio doppio-click su HC.exe ma non succede nulla!
+   R. Apri file 'stderr.txt' nella cartella del gioco (o controlla i messaggi sulla console in GNU/Linux).
+      L'ultima riga ti dirà il problema; cerca la soluzione in questo documento.
+
+   D. Il gioco è lento. Cosa posso fare?
+   R. Scegli una risoluzione video più bassa dal menù principale:
+      Opzioni > Video > Dimensioni > [modo] 
+      Forse la tua scheda grafica supporta la modalità 320x200. È un'occasione
+      per rivivere le senzazioni dei grandi giochi del passato :).
+
+   D. Sono sotto GNU/Linux ed uso ALSA ma non sento nessun suono.
+   R.  Per impostazioni predefinite ALSA azzera il suono. Prova a controllare il livello dei volumi
+      con i comandi 'alsamixer', 'aumix' oppure 'kmix'. Se un'altra applicazione sta usando la scheda audio
+      non potrai ascoltare i suoni de 'Il castello di Holotz' finchè non chiuderai quel programma.
+
+   D. I suoni sotto Windows sono orribili!
+   R. A parte il fatto che la colonna sonora del gioco non è tutto sto granchè :D, potrebbe essere un problema
+      di driver. Controlla di avere l'ultima versione disponibile dei driver.
+
+   D. Nella modalità ad 8bpp alcune zone del livello sono totalmente nere!
+   R. Questo errore è stato corretto nelle versioni 1.2 e superiori, controlla il sito del gioco (www.mainreactor.net) 
+      per avere l'ultima versione disponibile.
+
+   D. Non trovato risposta alle mie domande, cosa dovrei fare?
+   R. Puoi mandarmi una mail all'indirizzo scritto sotto. Non dimenticarti di allegare il file 'stderr.txt' che si
+      trova nella stessa cartella del gioco.  Il file contiene informazioni sulla tua scheda grafica e sul tuo problema.
+   
+   D. Sono un artista/musicita/programmatore/produttore/modella-90-60-90 e vorrei contribuire alla causa. Come posso farlo?
+   R. Oh, puoi inviarmi una mail all'indirizzo qui sotto (se sei una modella dovremmo prima avere un appuntamento :) )
+
+Juan Carlos Seijo Pérez (jacob@mainreactor.net)
+
+-- Traduzione in italiano: Federico 'hs1' Tolomei hardskinone chiocciola autistici punto org

@@ -1,0 +1,163 @@
+Holotz's Castle - Manual
+------------------------
+
+HISTORIA:
+24/10/2004 - Första utgåvan.
+08/02/2005 - Andra utgåvan.
+
+1. Snabbstart
+
+1.1. Windows
+
+	 1. Extrahera HC_win32-1.3.zip
+	 2. Efter extraheringen skapas en mapp med namnet HC.
+	 3. Öppna och utforska mappen.
+	 4. Dubbelklicka på filen holotz-castle.exe
+	 5. Njut!
+
+	 NOTERING: To create an application short cut is necessary to fill the field 'Run in' the
+   full path to the HC folder, in the short cut properties dialog.
+
+1.2. Linux (källkod)
+
+	 1. Gör 'tar -zxf HC_JLib_Linux_Win32-1.3.tar.gz' (utan citationstecken)
+	 2. Följ instruktionerna i filen README.txt i katalogen 'HC_JLib_Linux_Win32-1.3'.
+	 3. Gör 'cd Games/HolotzCastle'
+	 4. Gör './holotz-castle'
+	 5. Njut!
+
+2. Spelinstruktioner
+
+	 Tryck F1 i huvudmenyn eller under spelets gång för att visa hjälprutan. Den är dock inte tillgänglig vid dialoger.
+   
+
+   Efter att du tryckt på 'Nytt spel' får du se de första två scenerna där huvudkaraktärerna Ybelle och Ludar för en dialog med varandra.
+	 
+	 Du kan hoppa över pratbubblorna genom att trycka mellanslag. Du kan hoppa över hela scenen genom att trycka enter. 
+
+	 Under spelets gång kan du när som helst växla till huvudmenyn, men ifall du sedan trycker på 'Fortsätt spel' kommer du starta 
+         i början av den senast spelade banan.
+   Med detta sagt är en tumregel: om du vill spara, gör det precis efter att du påbörjat en ny bana. 
+
+	 Tryck 'p' för att pausa spelet och vila. Tryck 'p' igen för att återgå till spelet.
+
+   På tredje banan kan du styra Ybelle. Försöka styra honom med piltangenterna. Försök hoppa med mellanslag.
+   Ju längre du håller ned mellanslag, desto högre kommer karaktären att hoppa.
+
+	 I skärmens översta vänstra hörn syns den tid som återstår för att klara banan.
+   
+	 I skärmens översta högra hörn syns det antal objekt som återstår för att låsa upp banans utgång.
+
+	 När du samlat alla objekt aktiveras utgången (den rör sig fortare). Ställ dig under den och hoppa för att avsluta banan.
+	 
+	 Om du tycker att banorna är för lätta eller svåra kan du ändra svårighetsgraden i huvudmenyn (Inställningar > Svårighetsgrad).
+
+3. HCed
+
+	HCed heter Holotz Castles banredigerare.
+
+	För att starta den:
+		- I Linux, kör './holotz-castle-editor'
+			
+		- I Windows, dubbelklicka på ikonen holotz-castle-editor.exe
+
+	Huvudfönstret:
+
+		Fönstrets titel innehåller filen som används då du sparar den aktuella banan.
+
+		På vänster sida syns ikonerna:
+
+			- Normal floor
+			- Continuous floor
+			- Stege
+			- Bar
+			- Breakable floor
+			- Objekt
+			- Rep
+			- Startposition
+			- Slutposition
+			- Fiender
+			- Spara
+			- Ladda/Skapa handling
+			- Avsluta
+		
+		Under dessa syns följande skyltar:
+			
+			- Level time.
+			- Gravitation.
+			- X-hastighet.
+			- Y-hastighet.
+			- Jump amount.
+			- Map size (rader x kolumner)
+	
+	Mus:
+
+		Vänster knapp: Draws the current object in the map.
+		Central button or left & right buttons at the same time: Deletes the object under the pointer.
+
+	Tangentknappar:
+
+		c : adds blank column to the right
+		Shift + c : removes column to the right
+		Ctrl + c : adds blank column to the left
+		Ctrl + Mayús + c : removes column to the left
+		r : adds blank row bellow
+		Shift + r : removes row bellow
+		Ctrl + r : adds blank row upside
+		Ctrl + Mayús + r : removes row upside
+		+ : increase time (based upon hardest difficulty level)
+		- : decrease time
+		g : increase gravity
+            Shift + g: decrease gravity
+		x : increase x speed
+            Shift + x: decrease x speed
+		y : increase y speed
+            Shift + y: decrease y speed
+		j : increase jump amount
+		Shift + j : decrease jump amount
+		
+		With object/rope/start pos./enemy:
+			Ctrl - Adjusts to map.
+		
+		Att lägga till rep:
+			Select rope icon.
+			Position rope in map.
+			Without realeasing the left mouse button, press 'Alt'.
+			Mover updown mouse to set rope length.
+			Without realeasing the left mouse button, press 'Shift' to adjust the rope period.
+
+4. Frågor och svar
+
+   F. Jag dubbelklickar på HC.exe men ingenting sker!
+   S. Öppna filen kallad stderr.txt i samma mapp (eller kontrollera terminalmeddelanden i Linux).
+      De sista raderna talar om varför spelet hade problem att starta. Hitta en lösning till ditt 
+      problem bland de återstående frågorna och svaren.
+
+   F. Spelet går segt. Lösning?
+   S. Välj en lägre skärmupplösning i huvudmenyn:
+      Inställningar > Skärm > Upplösning > [storlek]. 
+      Ditt grafikkort kanske stöder upplösningen 320x200. Se det som ett
+      tillfälle att återuppliva känslor från de gammalmodiga tv-spelen.
+
+   F. Jag kör Linux med ALSA men kan inte höra något ljud. Vad göra?
+   S. Av standard tystar ALSA ned ljudet. Testa att kontrollera volymen med alsamixer, aumix eller kmix.
+      Om ett annat program använder ljudenheten kommer du inte kunna höra annat ljud förrän du stänger 
+      ned det programmet.
+
+   F. Ljudet i Windows är fejkat!
+   S. Trots det faktum att ljudspåret i sig självt inte är särskilt hörbart :D kan problemet orsakas av 
+      drivrutinerna till ditt ljudkort. Uppdatera dem och försök igen.
+
+   F. Ifall jag spelar med 8 bitars färgdjup är delar av banan helt svarta!
+   S. Det där felet har blivit åtgärdat sedan version 1.2, gå till spelets webbplats (www.mainreactor.net) för att hämta hem den senaste utgåvan.
+
+	 F. Jag hittade inget svar till mitt problem bland dessa frågor och svar, vad ska jag göra?
+	 S. Du kan skicka ett e-brev till e-postadressen nedanför. Glöm inte att vidhäfta filen kallad 
+            stderr.txt vilken finns i samma mapp som den binära filen (HC.exe). Den innehåller information
+            om ditt grafikkort och problemet med spelet.
+   
+	 F. Jag är en konstnär/musiker/programmerare/producent/90-60-90-modell och jag vill bidra till detta spel. Vad kan jag göra?
+         S. Oh, Du kan skicka ett e-brev till e-postadressen nedanför (om du är modell måste vi dejta först :) )
+
+
+Juan Carlos Seijo Pérez (jacob@mainreactor.net)

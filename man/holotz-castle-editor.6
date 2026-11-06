@@ -1,0 +1,64 @@
+.TH "Holotz's Castle Editor" "6" "28.01.2005" "Miriam Ruiz" ""
+.SH "NAME"
+holotz\-castle\-editor \- editor for holotz\-castle game
+.SH "SYNOPSIS"
+.B holotz\-castle\-editor [\fI\-f\fR] [\fI\-w\fR] [\fI\-\-fps nn\fR] [\fI\-mWWxHHxBPP\fR] [\fI\-r RR\fR] [\fI\-c CC\fR] [\fI\-t theme\fR] \fI<story> <nr>\fR
+.SH "DESCRIPTION"
+A great mistery is hidden beyond the walls of Holotz's Castle. ¿Will you be able to help Ybelle and Ludar to scape alive from the castle?
+
+Use the editor to design new levels for this game!
+.SH "USAGE"
+You can use the following keys while working with the editor:
+
+ \- Page Down: Next level in the story (or a new one if it doesn't exist).
+ \- Page Up: Previous level in the story.
+ \- 'c': Increase the number of columns from the right.
+ \- CTRL\-'c': Increase the number of columns from the left
+ \- SHIFT\-'c': Decrease the number of columns from the right.
+ \- SHIFT\-CTRL\-'c': Decrease the number of columns from the left.
+ \- 'r': Increase the number of rows from below.
+ \- CTRL\-'r': Increase the number of rows from above.
+ \- SHIFT\-'r': Decrease the number of rows from below.
+ \- SHIFT\-CTRL\-r: Decrease the number of rows from Above.
+ \- '+': Increase level time.
+ \- '\-': Decrease level time.
+ \- '1': Select 'floor' tool.
+ \- '2': Select 'continuous floor' tool.
+ \- '3': Select 'stairs' tool.
+ \- '4': Select 'bar' tool.
+ \- '5': Select 'breakable floor' tool.
+ \- '6': Select 'key' tool.
+ \- '7': Select 'rope' tool
+ \- '8': Select 'starting character's position' tool.
+ \- '9': Select 'exit position' tool.
+ \- '0': Select 'enemy' tool.
+ \- 's': Save.
+ \- CTRL\-'q': Quit editor.
+ \- Arrow keys: Move around in the map.
+ \- 'g': Increase gravity strength.
+ \- SHIFT\-'g': Decrease gravity strength.
+ \- 'x': Increase main character's speed in axis.
+ \- SHIFT\-'x': Decrease main character's speed in X axis.
+ \- 'y': Increase main character's speed in Y axis.
+ \- SHIFT\-'y': Decrease main character's speed in Y axis.
+ \- 'j': Increase the number of cells that the player can jump vertically.
+ \- SHIFT\-'j': Decrease the number of cells that the player can jump vertically.
+
+Other features:
+ \- When adding an item to the map, if you press CTRL key it is adjusted to a cell.
+ \- To adjust a rope's lenght, you select it and, while still pressing mouse button, press ALT key and drag the mouse vertically until getting the desired length.
+\- To adjust a rope's oscillation amplitude, you must select it and, keeping mouse button pressed, press SHIFT key. Real time amplitude is not shown, as it is determined taking into account the distance in vertical to the rope when releasing mouse button.
+
+.SH "OPTIONS"
+These command line options are available:
+ \-f             Full Screen.
+ \-w             Windowed.
+ \-\-fps nn       Run the game at nn frames per second (fps).
+ \-mWWxHHxBPP    Run in video mode set by WW pixels of width, HH pixels of height and BPP bits per pixel (eg. \-m640x480x16).
+ \-r RR          Crete map with RR rows of height.
+ \-c CC          Crete map with CC columns of width.
+ \-t theme       Use theme named 'theme'.
+ <story> <nr>   Load level nr of the story called 'story'.
+.SH "AUTHOR"
+This manual page was written for the Debian GNU/Linux system by Miriam Ruiz
+<little_miry@yahoo.es> (but may be used by others, of course)

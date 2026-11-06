@@ -1,0 +1,166 @@
+Holotz's Castle - Manual
+------------------------
+
+HISTORIA:
+08/02/2005 - Segunda edición.
+24/10/2004 - Primera edición.
+
+1. Comienzo rápido.
+
+1.1. Windows
+
+	 1. Descomprime HC_win32-1.3.zip
+	 2. Cuando termine de descomprimirse, una carpeta llamada HC apparece.
+	 3. Abre la carpeta.
+	 4. Haz doble click en holotz-castle.exe.
+	 5. ¡Pásalo bien!
+
+	 NOTA: Para crear un acceso directo es necesario poner en la casilla 'Ejecutar en' la
+   ruta completa de la carpeta HC, en las propiedades del acceso directo.
+
+1.2. Linux (código fuente)
+
+	 1. Haz 'tar -zxf HC_JLib_Linux_Win32-1.3.tar.gz' (sin comillas)
+	 2. Sigue las instrucciones del fichero LEEME.txt en el directorio 'HC_JLib_Linux_Win32-1.3'.
+	 3. Haz 'cd Games/HolotzCastle'
+	 4. Haz './holotz-castle'
+	 5. ¡Pásalo bien!
+
+2. Un primer recorrido por el juego.
+
+	 Para mostrar la ayuda mientras estás jugando, pulsa 'F1'. La ayuda no está disponible durante 
+	 las escenas de diálogo.
+
+	 Las primeras dos escenas que ves cuando seleccionas 'Nueva Partida' en el menú principal es
+   un diálogo entre Ybelle y Ludar, los protagonistas del juego.
+	
+	 Puedes saltarte los globos de texto pulsando espacio. Puedes saltarte todo un diálogo con la tecla intro.
+
+	 Puedes pasar al menú principal siempre que quieras durante el juego pero si luego quieres continuar
+   tendrás que empezar de nuevo el nivel desde el que saliste. Si vas a salvar, lo mejor es que lo hagas al
+   principio del nivel.
+
+	 Para pausar el juego y tomarte un respiro pulsa 'p'. Pulsando 'p' de nuevo te lleva otra vez al juego.   
+
+	 En el tercer nivel puedes manejar a Ybelle. Intenta moverlo con las teclas de dirección. Intenta saltar con la
+	 barra de espacio. Cuanto más la mantengas pulsada, más alto llegarás.
+
+	 El tiempo restante para completar el nivel se muestra en la esquina superior izquierda.
+
+	 El número de llaves objectos que faltan por recoger se muestra en la parte superior derecha.
+
+	 Cuando has recogido todas los objetos, la salida del nivel se activa (se mueve más rápido). Tienes que conseguir
+   llegar a ella en tiempo y una vez debajo saltar para salir del nivel.
+
+	 Si los niveles te parecen demasiado fáciles o difíciles, intenta ajustar el nivel de dificultad en el menú
+   principal (Opciones > Dificultad).	 
+
+3. HCed
+
+	HCed es el editor de niveles de Holotz's Castle.
+
+	Para ejecutarlo:
+		- En Linux, ejecuta './holotz-castle-editor'
+			
+		- En Windows, haz docle click sobre 'holotz-castle-editor.exe'
+
+	Ventana:
+
+		El título de la ventana muestra el fichero usado al salvar el nivel actual.
+
+		En la parte izquierda se muestran los iconos del editor:
+
+			- Suelo normal
+			- Suelo continuo
+			- Escalera
+			- Barra
+			- Suelo rompible
+			- Objeto
+			- Cuerda
+			- Posición de comienzo
+			- Posición de fin
+			- Enemigos
+			- Salvar
+			- Cargar/Crear historia
+			- Salir
+		
+		Debajo de esto iconos están los indicadores:
+			
+			- Tiempo del nivel.
+			- Gravedad.
+			- Velocidad x.
+			- Velocidad y.
+			- Potencia de salto.
+			- Tamaño del mapa (filas x columnas)
+	
+	Ratón:
+
+		Botón izquierdo: Dibuja en el mapa el objeto actual.
+		Botón central o ambos botones a la vez pulsados: Borra el objeto bajo el
+		puntero.		
+
+	Teclas:
+
+		c : añade columna en blanco por la derecha
+		Mayús + c : borra columna por la derecha
+		Ctrl + c : añade columna en blanco por la derecha
+		Ctrl + Mayús + c : borra columna por la derecha
+		+ : aumenta tiempo (el tiempo es el del nivel de dificultad difícil)
+		- : disminuye tiempo
+		g : aumenta gravedad
+            Mayús g: disminuye gravedad
+		x : aumenta velocidad x
+            Mayús x: disminuye velocidad x
+		y : aumenta velocidad y
+            Mayús y: disminuye velocidad y
+		j : aumenta nº de unidades verticales de salto
+		Mayús + j : disminuye nº de unidades verticales de salto
+		
+		Con objeto/cuerda/pos. comienzo/enemigo:
+			Ctrl - Ajusta la posición al mapa.
+		
+		Añadir cuerdas:
+			Seleccionar el icono de cuerda.
+			Posicionar la cuerda en el mapa.
+			Sin soltar el botón izquierdo, pulsar la tecla 'Alt'.
+			Mover el ratón en vertical para ajustar la longitud de la cuerda.
+			Sin soltar 'Alt', pulsar 'Mayús' para ajustar la amplitud del movimiento.
+
+4. Preguntas frecuentes.
+
+	 P. ¡Hago doble click en HC.exe pero no pasa nada!
+   R. Abre el fichero llamado stderr.txt en la misma carpeta (o comprueba los mensajes de la consola si estás en Linux).
+      Las últimas líneas muestran el error que se produjo. Eso te puede dar una pista para encontrar la solución en el
+      resto de preguntas de esta lista.
+
+	 P. El juego va muy despacio, ¿Qué puedo hacer?
+	 R. Selecciona una resolución menor en el menú principal:
+      Opciones > Video > Tamaño > [WWWxHHH] (escoge un valor bajo para WWW y HHH)
+      Quizá tu tarjeta gráfica soporta el modo 320x200, esa es una buena oportunidad para
+      hacer que el juego se parezca más a los primeros juegos de plataformas.
+
+	 P. Uso Linux con ALSA pero no oigo ningún sonido.
+   R. Por defecto ALSA enmudece el sonido completamente. Comprueba el valor del volumen por medio de algún
+      programa como alsamixer, aumix o kmix. Si otra aplicación está usando el sonido, no podrás oir nada hasta que 
+      la aplicación se cierre.
+
+	 P. ¡El sonido en Windows en penoso!
+	 R. Dejando de un lado el hecho de que la banda sonora no es una maravilla en sí misma :D, quizá el problema
+      esté en los drivers de la tarjeta de sonido. Comprueba que tienes una versión actualizada de los mismos y si no
+      la tienes, actualizala y prueba de nuevo.
+
+	 P. ¡En 8 bpp algunas partes del nivel aparecen en negro!
+   R. Sí, hay un pequeño problema con el modo de 8 bits por pixel. Esos bloques negros corresponden al suelo contínuo.
+      Quizá en la versión 2.0 esté ya solucionado :D
+
+	 P. No he encontrado una respuesta a mi problema en esta lista, ¿Qué puedo hacer?
+   R. Puedes enviarme un correo describiéndome el problema a la dirección de correo que aparece más abajo. No
+      olvides adjuntar el fichero stderr.txt que está en la carpeta del juego. Contiene información sobre tu tarjeta
+      gráfica y el problema con el juego.
+
+	 P. Soy dibujante/músico/programador/productor/modelo-90-60-90 y quiero contribuir a la causa. ¿Que puedo hacer?
+   R. Oh, puedes mandarme un e-mail a la dirección de correo de abajo (si eres una modelo, es imprescindible que tengamos
+      antes una cita personal :) ).
+
+
+Juan Carlos Seijo Pérez (jacob@mainreactor.net)

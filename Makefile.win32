@@ -1,0 +1,12 @@
+# Makefile Para Holotz's Castle. (C) Juan Carlos Seijo Pérez - 2004.
+# Makefile for Holotz's Castle.
+
+all: HC
+
+.PHONY: HC
+HC: 
+	make -C src -f Makefile.win32
+
+.PHONY: clean
+clean:
+	make -C src -f Makefile.win32 clean

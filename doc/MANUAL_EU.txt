@@ -1,0 +1,164 @@
+Holotz's Castle - Eskuliburua
+-----------------------------
+
+HISTORIA:
+08/02/2005 - Bigarren edizioa.
+24/10/2004 - Lehen edizioa.
+
+1. Hasiera bizkorra.
+
+1.1. Windows
+
+	 1. Atera HC_win32-1.3.zip artxiboko fitxategiak.
+	 2. Ateratzen bukatzean, HC izeneko karpeta bat agertuko da.
+	 3. Ireki karpeta.
+	 4. Klik bikoitza egin holotz-castle.exe fitxategian.
+	 5. Gozatu jokuaz!
+
+	 OHARRA: Lasterbide bat sortzeko beharrezkoa da 'Hasi hemen:' dioen hutsunean
+   HC karpetaren bide osoa jartzea, lasterbidearen ezaugarrietan.
+
+1.2. Linux (iturburu kodea)
+
+	 1. Egin 'tar -zxf HC_JLib_Linux_Win32-1.3.tar.gz' (kakotx gabe)
+	 2. Jarraitu 'HC_JLib_Linux_Win32-1.3' karpetako IRAKURRI.txt fitxategiko urratsak.
+	 3. Egin 'cd Games/HolotzCastle'
+	 4. Egin './holotz-castle'
+	 5. Gozatu jokuaz!
+
+2. Aurreneko ibilaldia jokuan zehar.
+
+	 Jokatzen ari zarenean laguntza ikusteko, sakatu 'F1'. Elkarrizketetan ezin da laguntza
+   ikusi.
+
+	 Hautesleihoan 'Jokaldi Berria' hautatzean agertzen diren lehen bi eszenak Ybelle eta Ludar,
+   jokuko protagonisten arteko elkarrizketak dira.
+	
+	 Elkarrizketa globoak ken ditzakezu Hutsunea sakatuz. Elkarrizketa osoa kentzeko sakatu Sartu.
+
+	 Jokatzen zabiltzan bitartean edozein unetan joan zaitezke hautesleiho nagusira, baina gero utzitako
+   tokian jarraitzea ezinezkoa da, maila hori berriz hasi beharko duzu. Jokua gorde nahi baduzu, onena
+   mailaren hasieran egitea da.
+
+	 Jokua gelditu eta atsedena hartzeko sakatu 'p'. Berriro 'p' zapalduz jokura itzuliko zara.   
+
+	 Hirugarren mailan Ybelle maneia dezakezu. Mugi ezazu norantza geziekin. Egin jauzi hutsune
+	 barrarekin. Zenbat eta denbora gehiago eduki sakatuta, orduan eta gorago helduko zara.
+
+	 Maila burutzeko duzun astia goi-ezkerraldeko ertzean ageri da.
+
+	 Jasotzeko dituzun giltza edo harrien kopurua goi-eskumaldeko ertzean ageri da.
+
+	 Objektu guztiak jasotzean, mailaren irteerako ataria irekitzen da (bizkorrago mugitzen da). Bertara
+   denboraz heltzea lortu behar duzu, eta behin honen azpian zaudela jauzi egin mailatik irteteko.
+
+	 Maila errazegiak edo zailegiak iruditzen bazaizkizu, zailtasun maila aldatu hautesleiho nagusian (Aukerak > Zailtasuna).	 
+
+3. HCed
+
+	HCed Holotz's Castle-ren maila-sorgailua da.
+
+	Abiarazteko:
+		- Linuxpean, egin './holotz-castle-editor'.
+			
+		- Windowspean, egin klik bikoitza 'holotz-castle-editor.exe' fitxategian.
+
+	Leihoa:
+
+		Leihoaren izenburua uneko maila gordetzeko erabiliko den fitxategiaren izena da.
+
+		Ezkerraldean sorgailuaren ikurrak ageri dira:
+
+			- Zoru arrunta
+			- Zoru jarraia
+			- Eskailera
+			- Barra
+			- Zoru hauskorra
+			- Objektua
+			- Soka
+			- Hasierako lekua
+			- Amaierako lekua
+			- Aurkariak
+			- Gorde
+			- Istorioa Eskuratu/Sortu
+			- Irten
+		
+		Ikur hauen azpian informazio hau dago:
+			
+			- Mailako denbora.
+			- Grabitatea.
+			- X abiadura.
+			- Y abiadura.
+			- Jauzien potentzia.
+			- Maparen neurria (lerroak x zutabeak)
+	
+	Sagua:
+
+		Ezkerreko botoia: Uneko objektua mapan margotzen du.
+		Erdiko botoia edo bi botoiak batera sakatuta: Erakuslearen azpian dagoen
+		objektua ezabatzen du.		
+
+	Teklak:
+
+		c : eskuman zutabe huts bat gehitzen du
+		Maius + c : eskumako lehen zutabea ezabatzen du
+		Ktrl + c : eskuman zutabe huts bat gehitzen du
+		Ktrl + Maius + c : eskumako lehen zutabea ezabatzen du
+		+ : maila burutzeko denbora tartea handitzen du (zailtasun zailean)
+		- : denbora tartea txikitzen du
+		g : grabitatea handitzen du
+            Maius g: grabitatea txikitzen du
+		x : x abiadura handitzen du
+            Maius x: x abiadura txikitzen du
+		y : y abiadura handitzen du
+            Maius y: y abiadura txikitzen du
+		j : jauziko unitate bertikalen kopurua handitzen du
+		Maius + j : jauziko unitate bertikalen kopurua txikitzen du
+
+		
+		Objektu, soka, hasierako leku eta aurkariekin:
+			Ktrl - Kokalekua mapara egokitzen du.
+		
+		Sokak gehitzeko:
+			Sokaren ikurra hautatu.
+			Soka mapan kokatu.
+			Ezkerreko botoia sakatuta duzula, 'Alt' tekla zapaldu.
+			Sagua goitik behera eraman sokaren luzeera zehazteko.
+			'Alt' sakatzeari utzi gabe, zapaldu 'Maius' balantza-mugimenduaren anplitudea zehazteko.
+
+4. Ohiko galderak.
+
+	 G. HC.exe-n klik bikoitza egiten dut eta ez da ezer gertatzen!
+   	 E. Ireki karpeta bereko stderr.txt fitxategia (edo frogatu kontsolako mezuak Linux badarabilzu).
+      Azken lerroek gertaturiko akatsa azaltzen dute. Honek konponbidea aurkitzen lagun zaitzake, agian zerrendako beste
+      galderetan dago bilatzen ari zaren erantzuna.
+
+	 G. Jokua oso motel dabil, zer egin dezaket?
+	 E. Hautesleiho nagusian  bereizmen txikiagoa aukeratu:
+      Aukerak > Irudia > Neurria > [WWWxHHH] (hautatu balio txiki bat WWW eta HHHrentzat)
+      Agian zure irudi-txartelak 320x200 era onartzen du, honakoa aukera bikaina da jokuari
+      aspaldiko plataforma jokuen antza emateko.
+
+	 G. Linuxekin ALSA erabiltzen dut, baina ez da soinurik entzuten.
+       E. ALSAk, berez, soinu guztiak isilarazten ditu. Frogatu soinuen ozentasun maila alsamixer, aumix edo kmix
+      bezalako programa batekin. Beste aplikazioren bat soinua erabiltzen ari bada, ezingo duzu ezer entzun programa
+      hori itxi arte.
+
+	 G. Windowseko soinua kakazahar bat da!
+	 E. Soinu Banda beste mundu batekoa ez dela jakinda :D, baliteke arazoa beste bat izatea, soinu-txartelaren
+      driverrena. Frogatu driverren bertsio eguneratu bat daukazula eta hala ez bada, eguneratu eta saiatu berriro.
+
+	 G. 8 bit/piksel eran mailaren zati batzuk beltzez ageri dira!
+       E. Bai, 8 bit/piksel erarekin arazo txiki bat dugu. Lauki beltz horiek zoru jarraiari dagozkio.
+      Agian 2.0 bertsioan arazoa konponduta egongo da :D
+
+	 G. Zerrenda honetan ez dut nire arazoaren konponbidea aurkitu, zer egin dezaket?
+       E. Postel bat bidali diezadakezu arazoa azalduz beherago ageri den helbide elektronikora. Ez ahaztu
+      stderr.txt fitxategia gehitzea (jokuaren karpetan dago). Zure irudi-txartelaren eta jokuko arazoaren
+      informazioa dauka.
+
+	 G. Marrazkilaria/musikaria/programatzailea/ekoizlea/90-60-90-modeloa naiz eta egitasmoan lagundu nahi dut. Zer egin dezaket?
+       E. Hara, beheko helbidera postel bat bidali diezadakezu (modeloa bazara, aurrena zita bat edukitzea ezinbestekoa da :) ).
+
+
+Juan Carlos Seijo Pérez (jacob@mainreactor.net)

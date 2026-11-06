@@ -1,0 +1,157 @@
+Holotz's Castle - Manuel
+------------------------
+
+1. Démarrage Rapide
+	 
+	 Tapez:
+
+	   ./holotz-castle
+
+	 ...et amusez-vous!
+
+
+  1.1 Si ça ne fonctionne pas, vous aurez probablement besoin des dernières versions
+			des librairies:
+      - SDL (www.libsdl.org)
+      - SDL_image, SDL_ttf, SDL_mixer (www.libsdl.org, section librairies)
+
+2. Brève présentaion du jeu
+
+	 Pour afficher l'aide dans le menu principal ou pendant le jeu, appuyez sur F1. L'aide n'est pas disponible pendant les scènes de dialogues.
+
+   Les deux premières scènes que vous verrez en sélectionnant 'Nouvelle partie' dans le menu principal sont un dialogue entre Ybelle et Ludar, les deux héros du jeu.
+	 
+	 Vous pouvez sauter les bulles de dialogues en appuyant sur la barre d'espace. Vous pouvez sauter une scène entière en appuyant sur Entrée.
+
+	 Vous pouvez revenir au menu principal à n'importe quel moment du jeu en pressant Echap mais, ensuite, si vous sélectionnez l'option 'Continuer la partie' vous reprendrez le jeu au début du dernier niveau joué.
+   Un conseil: Si vous voulez enregistrer la partie, faites-le quand vous venez de commencer un niveau.
+
+	 Pour mettre le jeu en pause et vous reposer, appuyez sur 'p'. Pressez 'p' une seconde fois pour revenir dans le jeu.
+
+   À partir du troisième niveau, vous pourrez contrôler Ybelle. Vous pourrez le faire bouger en utilisant les flèches directionnelles et le faire sauter en appuyant sur la barre d'espace.
+   Plus vous appuierez longtemps, plus vous pourrez sauter haut.
+
+	 Le temps disponible pour finir le niveau est visible dans le coin supérieur gauche de l'écran.
+   
+	 Les objets restants à trouver pour débloquer la sortie du niveau sont affichés dans le coin supérieur droit de l'écran.
+
+	 Quand vous aurez collecté tous les objets, la sortie sera activée (cela bougera plus vite) et vous devrez aller jusqu'à elle et sauter quand vous serez en dessous pour sortir du niveau.
+	 
+	 Si vous trouvez les niveaux trop difficiles ou trop faciles, essayez d'ajuster le niveau de difficulté dans le menu principal (Options > Difficulté).
+
+3. HCed
+
+	HCed est l'éditeur de niveau de Holotz's Castle.
+
+	Pour le lancer:
+		- Sous Linux, tapez './holotz-castle-editor'
+			
+		- Sous Windows, double-cliquez sur l'icône holotz-castle-editor.exe
+
+	Fenêtre principale:
+
+		Le titre de la fenêtre contient le nom du fichier qui sera utilisé quand vous enregistrerez le niveau courant.
+
+		Sur le côté gauche, on peut voir les icônes suivantes:
+
+			- Sol normal
+			- Sol continu
+			- Échelle
+			- Barre
+			- Sol cassable
+			- Objet
+			- Corde
+			- Point de départ
+			- Sortie
+			- Ennemis
+			- Sauvegarde
+			- Charger/Créer une histoire
+			- Quitter
+		
+		En dessous, il y a les indicateurs suivants:
+			
+			- Temps du niveau.
+			- Gravité.
+			- Vitesse en X.
+			- Vitesse en Y.
+			- Puissance de saut.
+			- Taille de la carte (lignes x colonnes)
+	
+	Souris:
+
+		Bouton gauche: Place l'objet choisi dans la carte.
+		Bouton du mileu ou boutons gauche & droit simultanément: Supprime l'objet sous le pointeur.
+
+	Clavier:
+
+		c : Ajoute une colonne vide sur la droite
+		Shift + c : Supprime une colonne sur la droite
+		Ctrl + c : Ajoute une colonne vide sur la gauche
+		Ctrl + Shift + c : Supprime une colonne sur la gauche
+		r : Ajoute une ligne vide en bas
+		Shift + r : Supprime une ligne en bas
+		Ctrl + r : Ajoute une ligne vide en haut
+		Ctrl + Mayús + r : Supprime une ligne en haut
+		+ : Augmenter le temps (le temps sera celui du niveau en mode difficile)
+		- : Diminuer le temps
+		g : Augmenter la gravité
+    Shift + g: Diminuer la gravité
+		x : Augmenter la vitesse en x
+    Shift + x: Diminuer la vitesse en x
+		y : Augmenter la vitesse en y
+    Shift + y: Diminuer la vitesse en y
+		j : Augmenter la puissance de saut
+		Shift + j : Diminuer la puissance de saut
+		
+		Avec les objets/cordes/point de départ/ennemis:
+			Ctrl - Déplacer l'objet.
+		
+		Ajouter une corde:
+			Choisir l'icône de corde.
+			Positionner la corde sur la carte.
+			Sans relâcher le bouton gauche de la souris, appuyer sur 'Alt'.
+			Bouger la souris vers le haut ou le bas pour choisir la longueur de la corde.
+			Sans relâcher le bouton gauche de la souris, appuyer sur 'Shift' pour choisir la période de balancement de la corde.
+
+4. FAQ
+
+   Q. Je double-clique sur HC.exe mais rien ne se passe!
+   A. Ouvez le fichier nommé stderr.txt dans le même dossier (ou regardez les messages
+			de la console sous Linux).
+      Les dernières lignes indiquent le problème. Cherchez une solution dans la suite de
+			cette FAQ
+
+   Q. Le jeu est lent que puis-je faire?
+   A. Choisissez une résolution plus faible dans le menu principal:
+      Options > Vidéo > Taille > [mode] 
+      Peut-être que votre carte graphique supporte le mode 320x200, vous avez la chance de
+      revivre les sensations des jeux vidéos à l'ancienne.
+
+   Q. Je suis sous Linux mais ALSA ne laisse entendre aucun son.
+   A. Par défaut ALSA coupe le son. Essayez de vérifier le volume avec alsamixer ou aumix
+			ou kmix.
+      Si une autre application utilise le son, vous ne pourrez pas entendre de son avant
+			de l'avoir fermer.
+
+   Q. Le son sous Windows est médiocre!
+   A. Malgré le fait que la bande son elle même n'est pas terrible :D, peut-être que le
+			problème provient des pilotes de la carte son. Récupérez la dernière version
+			de ceux-ci et réessayez.
+
+   Q. En mode 8 bpp mode des parties du niveau sont toutes noires!
+   A. Cette erreur est corrigée dans les version 1.2 et plus, récupérez la
+			dernière version sur Internet (www.mainreactor.net).
+
+	 Q. Je n'ai pas trouvé de réponses à mon problème dans cette FAQ, que puis-je faire?
+	 A. Vous pouvez m'envoyer à l'adresse qui est à la fin de cette FAQ. N'oubliez pas
+			de joindre le fichier nommé stderr.txt qui est dans le même dossier que
+			l'éxécutable (HC.exe). Il contient toutes les informations à propos de votre
+			carte graphqiue et le problème avec le jeu.
+   
+	 Q. Je suis un artiste/musicien/programmeur/producteur/modèle-90-60-90 et je veux
+			contribuer à la cause. Que puis-je faire?
+   A. Oh, vous pouvez pouvez me contacter à l'adresse en dessous (si vous êtes mannequin,
+			nous prendrons un rendez-vous personnel avant :) )
+
+
+Juan Carlos Seijo Pérez (jacob@mainreactor.net)

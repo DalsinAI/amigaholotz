@@ -1,0 +1,44 @@
+# Makefile para JLib/Win32.
+# (C) Juan Carlos Seijo Pérez - 2003.
+
+GRAPHICS=JLib/Graphics
+UTIL=JLib/Util
+MATH=JLib/Math
+SOUND=JLib/Sound
+PHYSICS=JLib/Physics
+
+JLIB_OBJS=$(GRAPHICS)/JControl.o $(GRAPHICS)/JUI.o $(GRAPHICS)/JGLAxes.o $(GRAPHICS)/JGLCamera.o $(GRAPHICS)/JGLConsole.o \
+					$(GRAPHICS)/JGLGrid.o $(GRAPHICS)/JGLLight.o $(GRAPHICS)/JGLTexture.o $(GRAPHICS)/JGLVector.o \
+	  			$(GRAPHICS)/JControlImage.o $(GRAPHICS)/JImage.o $(GRAPHICS)/JImageSprite.o $(GRAPHICS)/JSprite.o $(GRAPHICS)/JFont.o \
+					$(GRAPHICS)/JTextMenu.o $(GRAPHICS)/JImageMenu.o $(GRAPHICS)/JGLMesh.o $(GRAPHICS)/JGLImage.o $(UTIL)/JFile.o \
+					$(UTIL)/JGLApp.o $(UTIL)/JObject.o $(UTIL)/JTextFile.o $(UTIL)/JTextUtil.o $(UTIL)/JTimer.o $(UTIL)/JUtil.o \
+					$(UTIL)/JApp.o $(UTIL)/JThread.o $(MATH)/J2DPolygon.o
+
+# Definir -D_JLIB_DEBUG para hacer debug de JLib. Compilar el programa a debugear también con este flag
+CFLAGS=-I. -I/mingw/include/SDL -O3 -ffast-math -I/mingw/include
+#LDFLAGS=-L. -ffast-math -lwinsock32 -luser32.lib -lgdi32.lib -lwinmm.lib -lcomdlg32.lib -lcomctl32.lib -lSDLmain -lSDL -lSDL_image -lSDL_ttf -lSDL_mixer -lJLib
+
+all: libJLib
+
+# JLib
+libJLib: $(JLIB_OBJS)
+	ar rvus $@.a $?
+
+$(GRAPHICS)/%.o: $(GRAPHICS)/%.cpp
+	g++ $(CFLAGS) -c -o $@ $<
+$(UTIL)/%.o: $(UTIL)/%.cpp
+	g++ $(CFLAGS) -c -o $@ $<
+$(MATH)/%.o: $(MATH)/%.cpp
+	g++ $(CFLAGS) -c -o $@ $<
+
+.PHONY: install
+install:
+	cp libJLib* /mingw/lib/.; \
+	find . -name *.h -exec 'cp' '--parents' '{}' '/mingw/include/' ';' ; \
+
+.PHONY: clean
+clean:
+	rm JLib/Graphics/*.o
+	rm JLib/Util/*.o
+	rm JLib/Math/*.o
+	rm libJLib.a

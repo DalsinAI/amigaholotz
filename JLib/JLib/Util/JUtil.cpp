@@ -163,6 +163,37 @@ JVideoMode * JListVideoModes(s32 *count, s32 depth)
 		}
 	}
 
+#ifdef __amigaos__
+	// AmigaOS (OpenGPU): SDL lists the Workbench's own size, but the game is
+	// drawn for 640x480 and plays in a window of any size: offer 640x480 and
+	// 800x600 too, so that its first choice (a mode no bigger than 640x480)
+	// is one, and the index it saves means the same mode next time
+	{
+		static const s32 own[][2] = {{640, 480}, {800, 600}};
+		for (s32 k = 0; k < nBpps; ++k)
+		{
+			for (u32 o = 0; o < sizeof(own) / sizeof(own[0]); ++o)
+			{
+				bool have = false;
+				for (u32 i = 0; i < modes.size(); ++i)
+				{
+					if (modes[i]->w == own[o][0] && modes[i]->h == own[o][1] && modes[i]->bpp == pBpps[k])
+						have = true;
+				}
+				if (!have)
+				{
+					mode = new JVideoMode;
+					mode->w = own[o][0];
+					mode->h = own[o][1];
+					mode->bpp = pBpps[k];
+					mode->hw = true;
+					modes.push_back(mode);
+				}
+			}
+		}
+	}
+#endif
+
 	JVideoMode *result = 0;
 
 	if (modes.size() == 0)

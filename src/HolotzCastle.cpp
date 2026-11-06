@@ -1874,8 +1874,15 @@ void HCApp::Destroy()
 }
 
 // Main function
+#ifdef __amigaos__
+extern "C" void amiga_start(void); // amiga/amiga_start.c: into the drawer
+#endif
+
 int main(int argc, char **argv)
 {
+#ifdef __amigaos__
+	amiga_start();
+#endif
 	HCApp app;
 	
 	if (app.Init(argc, argv))

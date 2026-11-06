@@ -30,7 +30,7 @@
 #include <HCLoadSaveSlot.h>
 #include <HCLevel.h>
 
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos__) /* Amiga: in the drawer, as on Windows */
 #include <unistd.h>
 #endif
 
@@ -40,7 +40,7 @@ bool HCLoadSaveSlot::Load(s32 slot)
 	JRW f;
 	char name[256];
 
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos__) /* Amiga: in the drawer, as on Windows */
 	char *home;
 	home = getenv("HOME");
 	if (home != NULL)
@@ -69,7 +69,7 @@ bool HCLoadSaveSlot::Save(s32 slot, const JString& s, s32 levelNumber)
 	JRW f;
 	char name[256];
 
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos__) /* Amiga: in the drawer, as on Windows */
 	char *home;
 	home = getenv("HOME");
 	snprintf(name, sizeof(name), "%s/.holotz-castle", home);

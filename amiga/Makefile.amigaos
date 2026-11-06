@@ -15,7 +15,7 @@
 # FreeType) stand in. DEPS has the Team's static FreeType, libpng and zlib
 # (/mnt/amigachrome/team2/deps/m68k-amigaos). SDL_RWFromFile is plain
 # stdio (amiga/amiga_rwops.c, -Wl,--wrap): sdl12-compat's does not come
-# back on OpenGPU.
+# back on OpenGPU. chdir() takes ".." (amiga/amiga_chdir.c, -Wl,--wrap).
 
 STOVE   ?= $(HOME)/CradleLab/toolchain/openamigagcc-16.2.0-open4-x86_64-linux
 NDK     ?= $(HOME)/CradleLab/gfopensdk/OpenNDK/Include_H
@@ -39,7 +39,7 @@ INC     = -Iamiga/include/SDL -Iamiga/include -Iamiga/sdl_ttf -Isrc -IJLib \
           -I$(SDLKIT)/include/SDL -I$(DEPS)/include -I$(DEPS)/include/freetype2
 CFLAGS  = -noixemul $(OPT) $(CPU) -fno-common -MMD -MP
 CXXFLAGS = $(CFLAGS) $(DEFS) $(INC) -std=gnu++98 -fno-strict-aliasing -ffast-math -w
-LDFLAGS = -noixemul $(CPU) -Wl,--wrap=SDL_RWFromFile
+LDFLAGS = -noixemul $(CPU) -Wl,--wrap=SDL_RWFromFile -Wl,--wrap=chdir
 LIBS    = -L$(SDLKIT)/lib -L$(DEPS)/lib -lSDL -lfreetype -lpng -lz -lbz2 -lpthread -lm
 
 GRAPHICS = JLib/JLib/Graphics
@@ -58,7 +58,7 @@ HC_SRC  = $(addprefix src/,HolotzCastle.cpp HCUtil.cpp HCTimer.cpp \
           HCEnemyStatic.cpp HCScriptAction.cpp HCScriptBlock.cpp \
           HCScript.cpp HCLevel.cpp)
 CSRC    = amiga/amiga_start.c amiga/amiga_screens.c amiga/stack.c \
-          amiga/amiga_rwops.c amiga/sdl_image_lite.c amiga/sdl_mixer_lite.c \
+          amiga/amiga_rwops.c amiga/amiga_chdir.c amiga/sdl_image_lite.c amiga/sdl_mixer_lite.c \
           amiga/png_rgba.c amiga/sdl_ttf/SDL_ttf.c
 
 OBJS    = $(JLIB_SRC:%.cpp=$(OBJDIR)/%.o) $(HC_SRC:%.cpp=$(OBJDIR)/%.o) \
@@ -95,7 +95,9 @@ dist: $(BUILD)/$(PROG) $(ICONS) AMIGA_PORT.md
 	cp amiga/sdl_ttf/COPYING $(OUT)/SDL_ttf-COPYING.txt
 	cp amiga/icons/HolotzCastle.info amiga/icons/ReadMe.info $(OUT)/
 	for f in LICENSE.txt SDL_ttf-COPYING.txt; do cp amiga/icons/ReadMe.info $(OUT)/$$f.info; done
-	cd $(OUT) && find . -mindepth 1 -type d | while read d; do cp $(CURDIR)/amiga/icons/Folder.info "$$d.info"; done
+	# res/ alone gets an icon: the game lists res/'s drawers (its stories)
+	# by name, and would offer a .info beside each as one more
+	cp amiga/icons/Folder.info $(OUT)/res.info
 	cp amiga/icons/HolotzCastle-drawer.info dist/HolotzCastle.info
 
 -include $(OBJS:.o=.d)

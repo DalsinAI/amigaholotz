@@ -1,0 +1,111 @@
+# Holotz's Castle 1.3.14 for AmigaOS 3.x, 68040/68060 + FPU, on OpenGPU's
+# SDL 1.2 (sdl12-compat).
+#
+#   make -f amiga/Makefile.amigaos -j2 dist \
+#        STOVE=/path/to/openamigagcc-16.2.0-open4 \
+#        NDK=/path/to/OpenNDK/Include_H SDLKIT=/path/to/opengpu-sdk \
+#        DEPS=/path/to/m68k-amigaos
+#
+# The game (src/, not the editor) and the JLib objects it uses (JLib/
+# Makefile's list, without the OpenGL and thread classes, which the game
+# does not use), linked statically. SDLKIT is the OpenGPU developer kit:
+# libSDL.a, sdl12-compat on SDL2.module. It has no SDL_image, SDL_mixer or
+# SDL_ttf 1.2: amiga/sdl_image_lite.c (PNG and TGA), amiga/sdl_mixer_lite.c
+# (WAV) and SDL_ttf 2.0.11 itself (amiga/sdl_ttf, on the Team's static
+# FreeType) stand in. DEPS has the Team's static FreeType, libpng and zlib
+# (/mnt/amigachrome/team2/deps/m68k-amigaos). SDL_RWFromFile is plain
+# stdio (amiga/amiga_rwops.c, -Wl,--wrap): sdl12-compat's does not come
+# back on OpenGPU. chdir() takes ".." and getcwd() names
+# the drawer from its lock (amiga/amiga_chdir.c, -Wl,--wrap).
+
+STOVE   ?= $(HOME)/CradleLab/toolchain/openamigagcc-16.2.0-open4-x86_64-linux
+NDK     ?= $(HOME)/CradleLab/gfopensdk/OpenNDK/Include_H
+SDLKIT  ?= /mnt/amigachrome/team2/deps/opengpu-sdk
+DEPS    ?= /mnt/amigachrome/team2/deps/m68k-amigaos
+CC      = $(STOVE)/bin/m68k-amigaos-gcc
+CXX     = $(STOVE)/bin/m68k-amigaos-g++
+STRIP   = $(STOVE)/bin/m68k-amigaos-strip
+CPU     ?= -m68040 -m68881
+# -fno-tree-loop-distribute-patterns: GCC 16's loop miscompile (the kit's
+# sdl2-config gives it for GCC 16 too).
+OPT     ?= -O2 -fomit-frame-pointer -fno-tree-loop-distribute-patterns
+
+BUILD   = build/amigaos
+OBJDIR  = $(BUILD)/obj
+PROG    = HolotzCastle
+OUT     = dist/HolotzCastle
+
+DEFS    = -D__amigaos__ -DNDEBUG -DHC_DATA_DIR=\"res/\" -DHCED_DATA_DIR=\"HCedHome/res/\"
+INC     = -Iamiga/include/SDL -Iamiga/include -Iamiga/sdl_ttf -Isrc -IJLib \
+          -I$(SDLKIT)/include/SDL -I$(DEPS)/include -I$(DEPS)/include/freetype2
+CFLAGS  = -noixemul $(OPT) $(CPU) -fno-common -MMD -MP
+CXXFLAGS = $(CFLAGS) $(DEFS) $(INC) -std=gnu++98 -fno-strict-aliasing -ffast-math -w
+LDFLAGS = -noixemul $(CPU) -Wl,--wrap=SDL_RWFromFile -Wl,--wrap=chdir -Wl,--wrap=getcwd
+LIBS    = -L$(SDLKIT)/lib -L$(DEPS)/lib -lSDL -lfreetype -lpng -lz -lbz2 -lpthread -lm
+
+GRAPHICS = JLib/JLib/Graphics
+UTIL    = JLib/JLib/Util
+JLIB_SRC = $(addprefix $(GRAPHICS)/,JControl.cpp JUI.cpp JControlImage.cpp \
+          JImage.cpp JImageSprite.cpp JSprite.cpp JFont.cpp JTextMenu.cpp \
+          JImageMenu.cpp) \
+          $(addprefix $(UTIL)/,JFile.cpp JObject.cpp JTextFile.cpp \
+          JTextUtil.cpp JTimer.cpp JUtil.cpp JApp.cpp JFS.cpp JRW.cpp) \
+          JLib/JLib/Math/J2DPolygon.cpp
+HC_SRC  = $(addprefix src/,HolotzCastle.cpp HCUtil.cpp HCTimer.cpp \
+          HCLoadSaveSlot.cpp HCPlaylist.cpp HCPreferences.cpp HCTheme.cpp \
+          HCText.cpp HCBreak.cpp HCRope.cpp HCContFloor.cpp HCObject.cpp \
+          HCMap.cpp HCExit.cpp HCCharacter.cpp HCEnemy.cpp HCEnemyBall.cpp \
+          HCEnemyChaser.cpp HCEnemyMaker.cpp HCEnemyRandom.cpp \
+          HCEnemyStatic.cpp HCScriptAction.cpp HCScriptBlock.cpp \
+          HCScript.cpp HCLevel.cpp)
+CSRC    = amiga/amiga_start.c amiga/amiga_screens.c amiga/stack.c \
+          amiga/amiga_rwops.c amiga/amiga_chdir.c amiga/sdl_image_lite.c amiga/sdl_mixer_lite.c \
+          amiga/png_rgba.c amiga/sdl_ttf/SDL_ttf.c
+
+OBJS    = $(JLIB_SRC:%.cpp=$(OBJDIR)/%.o) $(HC_SRC:%.cpp=$(OBJDIR)/%.o) \
+          $(CSRC:%.c=$(OBJDIR)/%.o)
+ICONS   = $(wildcard amiga/icons/*.info)
+
+all: $(BUILD)/$(PROG)
+
+$(BUILD)/$(PROG): $(OBJS)
+	$(CXX) $(LDFLAGS) -o $@.debug $(OBJS) $(LIBS)
+	$(STRIP) -o $@ $@.debug
+
+$(OBJDIR)/%.o: %.cpp
+	@mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
+
+$(OBJDIR)/amiga/sdl_ttf/%.o: amiga/sdl_ttf/%.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -std=gnu99 -I$(SDLKIT)/include/SDL -I$(DEPS)/include/freetype2 -DAMIGA_NO_FT_STROKER -w -c -o $@ $<
+
+$(OBJDIR)/amiga/%.o: amiga/%.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -std=gnu99 -Iamiga/include/SDL -I$(SDLKIT)/include/SDL -I$(DEPS)/include -I$(NDK) -Wall -c -o $@ $<
+
+# The drawer: the program, the game's res/ (its pictures, sounds, levels
+# and the font; the saves and preferences go there too), ReadMe and the
+# licences. The sounds are made 16-bit PCM (amiga/tools/msadpcm2pcm.py:
+# they are MS ADPCM, which amiga/sdl_mixer_lite.c does not read).
+dist: $(BUILD)/$(PROG) $(ICONS) AMIGA_PORT.md
+	rm -rf $(OUT) && mkdir -p $(OUT)
+	cp $(BUILD)/$(PROG) $(OUT)/
+	cp -R res $(OUT)/res
+	python3 amiga/tools/msadpcm2pcm.py $(OUT)/res/sound
+	cp AMIGA_PORT.md $(OUT)/ReadMe
+	cp LICENSE.txt $(OUT)/LICENSE.txt
+	cp amiga/sdl_ttf/COPYING $(OUT)/SDL_ttf-COPYING.txt
+	cp amiga/icons/HolotzCastle.info amiga/icons/ReadMe.info $(OUT)/
+	for f in LICENSE.txt SDL_ttf-COPYING.txt; do cp amiga/icons/ReadMe.info $(OUT)/$$f.info; done
+	# res/ alone gets an icon: the game lists res/'s drawers (its stories)
+	# by name, and would offer a .info beside each as one more
+	cp amiga/icons/Folder.info $(OUT)/res.info
+	cp amiga/icons/HolotzCastle-drawer.info dist/HolotzCastle.info
+
+-include $(OBJS:.o=.d)
+
+clean:
+	rm -rf $(BUILD)
+
+.PHONY: all clean dist

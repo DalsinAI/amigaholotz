@@ -70,7 +70,7 @@ bool HCScript::Load(const char *filename)
 	blocks = new HCScriptBlock[numBlocks];
 	
 	// Process each block
-	s8 *begin, *end; 
+	s8 *begin;
 
 	f.StartOfDocument();
 
@@ -80,7 +80,6 @@ bool HCScript::Load(const char *filename)
 		
 		begin = f.GetPos();
 		f.FindNext("}");
-		end = f.GetPos();
 
 		f.SetPos(begin);
 

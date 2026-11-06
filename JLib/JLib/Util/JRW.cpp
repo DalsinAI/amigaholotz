@@ -7,7 +7,7 @@
 
 #include <JLib/Util/JRW.h>
 
-u32 JRW::ZRead(void **buff)
+u32 JRW::ZRead(u8 **buff)
 {
 	u32 len, lenUncomp;
 	
@@ -112,12 +112,9 @@ u32 JRW::ZWrite(const void *buff, u32 size, s32 level)
 		return 0;
 	}
 
-  // For compatibility with zlib
-  unsigned long sizeCompUL, sizeUL;
-  sizeCompUL = sizeComp;
-  sizeUL = size;
+	unsigned long sizeCompUL = sizeComp;
 
-	if (Z_OK != compress2((Bytef*)buffComp, (uLongf*)&sizeComp, (Bytef*)buff, size, level))
+	if (Z_OK != compress2(buffComp, &sizeCompUL, static_cast<const Byte *>(buff), size, level))
 	{
 		delete[] buffComp;
 		return 0;

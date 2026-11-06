@@ -232,7 +232,7 @@ bool HCApp::Init(s32 argc, char **argv)
 		return false;
 	}
 
-	if (!JApp::Init())
+	if (!JApp::Init(0, 0))
 	{
 		return false;
 	}
@@ -272,7 +272,7 @@ bool HCApp::InitFonts()
 	{
 		fprintf(stderr, 
 						"Could not find data directory.\n\n"
-						"Posible solutions are:\n"
+						"Possible solutions are:\n"
 						" - Open folder JLib-1.3.1/Games/HolotzCastle and double.\n"
 						"   click 'holotz-castle' application icon.\n"
 						" - Maybe you did 'make' but didn't do 'make install'.\n"
@@ -1874,8 +1874,15 @@ void HCApp::Destroy()
 }
 
 // Main function
+#ifdef __amigaos__
+extern "C" void amiga_start(void); // amiga/amiga_start.c: into the drawer
+#endif
+
 int main(int argc, char **argv)
 {
+#ifdef __amigaos__
+	amiga_start();
+#endif
 	HCApp app;
 	
 	if (app.Init(argc, argv))

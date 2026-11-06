@@ -886,8 +886,8 @@ s32 JFS::Import(const char *filename, JTree<JResource *>::Node *where, bool afte
 		s32 n, k;
 
 		// Si es un directorio lo importa recursivamente
-		struct dirent64 **namelist;
-		n = scandir64(filename, &namelist, 0, alphasort);
+		struct dirent **namelist;
+		n = scandir(filename, &namelist, 0, alphasort);
 
 		if (n < 0)
 		{
@@ -1112,7 +1112,7 @@ s32 JFS::Export()
 				// Lee los datos desde el formato adecuado
 				if (JFS_COMPRESSED(index[id]->res))
 				{
-					if (0 == (size = resFile.ZRead((void **)&buff)))
+					if (0 == (size = resFile.ZRead(&buff)))
 					{
 						fprintf(stderr, "JFS::Export - Error reading compressed resource\n");
 						delete[] buff;

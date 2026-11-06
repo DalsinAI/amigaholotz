@@ -33,7 +33,7 @@
 #define HC_DATA_DIR "res/"
 #endif
 
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos__) /* Amiga: in the drawer, as on Windows */
 #include <string.h>
 #include <unistd.h>
 #endif
@@ -123,7 +123,7 @@ s32 HCPreferences::Load(const char *filename)
 		fname = filename;
 	else
 	{
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos__) /* Amiga: in the drawer, as on Windows */
 		char *home;
 		home = getenv("HOME");
 		if (home != NULL)
@@ -193,7 +193,7 @@ s32 HCPreferences::Save(const char *filename)
 		fname = filename;
 	else
 	{
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__amigaos__) /* Amiga: in the drawer, as on Windows */
 		char *home;
 		home = getenv("HOME");
 		if (home != NULL)
@@ -219,7 +219,7 @@ s32 HCPreferences::Save(const char *filename)
 	}
 
 	// Saves the preferences
-	if (0 > f.Printf("language=%d\nvideo=%d\nbpp=%d\nfullscreen=%d\naudio=%d\ndifficulty=%d", curLang, videoMode, bpp, fullscreen ? 1 : 0, sound ? 1 : 0, difficulty))
+	if (0 == f.Printf("language=%d\nvideo=%d\nbpp=%d\nfullscreen=%d\naudio=%d\ndifficulty=%d", curLang, videoMode, bpp, fullscreen ? 1 : 0, sound ? 1 : 0, difficulty))
 	{
 		// Incorrect file
 		return 2;

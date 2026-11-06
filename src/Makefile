@@ -1,6 +1,11 @@
 # Makefile Para Holotz's Castle. (C) Juan Carlos Seijo Pérez - 2004.
 # Makefile for Holotz's Castle.
 
+HARDENING := $(shell dpkg-buildflags --get CFLAGS)
+HARDENING += $(shell dpkg-buildflags --get CPPFLAGS)
+HARDENING += $(shell dpkg-buildflags --get CXXFLAGS)
+HARDENING_LDFLAGS = $(shell dpkg-buildflags --get LDFLAGS)
+
 ifndef SDL_CONFIG
 SDL_CONFIG = sdl-config
 endif
@@ -25,7 +30,7 @@ ifndef I486_BUILD
 HC_BASE = /usr/share/games/holotz-castle/
 HC_DATA = $(HC_BASE)game/
 HCED_DATA = $(HC_BASE)editor/
-HC_BIN_DIR = /usr/local/bin/
+HC_BIN_DIR = /usr/games/
 endif
 
 DEFINES = -DHC_DATA_DIR=\"$(HC_DATA)\" -DHCED_DATA_DIR=\"$(HCED_DATA)\"
@@ -42,23 +47,26 @@ HCED_OBJ_MAIN=HCed.o
 
 # Definir -D_JLIB_DEBUG para debug con JLib. Ponerlo también en el Makefile de JLib.
 # Define -D_JLIB_DEBUG for JLib debug mode. Put it also in JLib's Makefile.
-CFLAGS=-fno-strict-aliasing -I. -I../JLib `$(SDL_CONFIG) --cflags` -I/usr/local/include/ -I/usr/local/include/SDL -O3 -Wall -Werror -Wshadow $(CPU_OPTS) -ffast-math -c
-LDFLAGS=-L. -ffast-math -lSDL_image -lSDL_ttf -lSDL_mixer `$(SDL_CONFIG) --libs`
+MORE_CFLAGS= -O3
+
+CFLAGS=-fno-strict-aliasing -I. -I../JLib `$(SDL_CONFIG) --cflags` -I/usr/local/include/ -I/usr/local/include/SDL $(MORE_CFLAGS) $(HARDENING) -Wall -Wshadow $(CPU_OPTS) -ffast-math -c
+LDFLAGS=-ffast-math $(HARDENING_LDFLAGS)
+LIBS=-L. -lSDL_image -lSDL_ttf -lSDL_mixer `$(SDL_CONFIG) --libs` -lz
 
 
 JLib: 
 	$(MAKE) -C ../JLib;
 
 %.o: %.cpp %.h
-	g++ $(CFLAGS) $(DEFINES) $< -o $@
+	$(CXX) $(CFLAGS) $(DEFINES) $< -o $@
 
 HC: $(HC_OBJS) $(HC_OBJ_MAIN) ../JLib/libJLib.a
-	g++ $(LDFLAGS) $? -o $@;\
+	$(CXX) $(LDFLAGS) $? -o $@ $(LIBS);\
 	mv HC ../holotz-castle
 
 # HCed (Holotz's Castle editor).
 HCed: $(HC_OBJS) $(HCED_OBJ_MAIN) ../JLib/libJLib.a
-	g++ $(LDFLAGS) $? -o $@;\
+	$(CXX) $(LDFLAGS) $? -o $@ $(LIBS);\
 	mv HCed ../holotz-castle-editor
 
 install:

@@ -387,7 +387,7 @@ u32 HCMap::Load(JRW &f)
 	Destroy();
 
 	// Loads the number of rows and cols, etc.
-	if (0 == f.ReadLE32((u32 *)&gravity) ||
+	if (0 == f.ReadLE32(&gravity) ||
 			0 == f.ReadLE32(&rows) ||
 			0 == f.ReadLE32(&cols) ||
 			0 == f.ReadLE32(&exitRow) ||
@@ -472,7 +472,7 @@ u32 HCMap::Load(JRW &f)
 u32 HCMap::Save(JRW &f)
 {
 	// Saves the number of rows and cols, etc.
-	if (0 == f.WriteLE32((u32 *)&gravity) ||
+	if (0 == f.WriteLE32(&gravity) ||
 			0 == f.WriteLE32(&rows) ||
 			0 == f.WriteLE32(&cols) ||
 			0 == f.WriteLE32(&exitRow) ||

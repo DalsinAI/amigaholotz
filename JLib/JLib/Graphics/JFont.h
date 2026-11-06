@@ -36,7 +36,7 @@
 
 /** Alineación del texto a renderizar.
  */
-typedef enum JFontAlign
+enum JFontAlign
 {
 	JFONTALIGN_LEFT = 0,                  /**< Alineado a la izquierda. */
 	JFONTALIGN_RIGHT,                     /**< Alineado a la derecha. */
@@ -50,7 +50,7 @@ class JFont
 {
 	/** Tipo de renderizado a usar
 	 */
-	typedef enum JFontRenderType
+	enum JFontRenderType
 	{
 		JFONTRENDERTYPE_SOLID = 0,          /**< Sólido con colorkey. */
 		JFONTRENDERTYPE_SHADED,             /**< Con antialiasing en fondo sólido. */

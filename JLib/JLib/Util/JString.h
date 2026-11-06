@@ -405,7 +405,7 @@ inline JString::JString(const JString& s, u32 start, u32 end)
   if (end == (u32)-1)
     end = s.Length();
 
-  if (start >= 0 && start < s.Length() && end > start && end <= s.Length())
+  if (start < s.Length() && end > start && end <= s.Length())
   {
     length = end - start;
     data = new char[length + 1];
@@ -429,7 +429,7 @@ inline JString::JString(const char *s, u32 start, u32 end)
     if (end == (u32)-1)
       end = len;
 
-    if (start >= 0 && start < len && end > start && end <= len)
+    if (start < len && end > start && end <= len)
     {
       length = end - start;
       data = new char[length + 1];

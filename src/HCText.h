@@ -35,7 +35,7 @@
 #include <JLib/Graphics/JFont.h>
 #include <HCTheme.h>
 
-typedef enum HCTextType
+enum HCTextType
 {
 	HCTEXTTYPE_DIALOG,                    /**< Dialog balloon. */
 	HCTEXTTYPE_NARRATIVE,                 /**< Narrative frame. */

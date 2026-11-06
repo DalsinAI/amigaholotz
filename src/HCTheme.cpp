@@ -51,7 +51,7 @@ s32 HCTheme::CountDirs()
 	bool cont = true;
 
 	char cwd[2048];
-	getcwd(cwd, 2048);
+	if (0 == getcwd(cwd, 2048)){}
 
 	do
 	{
@@ -103,11 +103,11 @@ bool HCTheme::LoadFloors()
 				ret = false;
 			}
 
-			chdir("..");
+			if (0 == chdir("..")){}
 		}
 	}
 
-	chdir("..");
+	if (0 == chdir("..")){}
 
   return ret;
 }
@@ -170,7 +170,7 @@ bool HCTheme::LoadContFloors()
 				ret = false;
 			}
 			
-			chdir("..");
+			if (0 == chdir("..")){}
 		}
 		else
 		{
@@ -178,7 +178,7 @@ bool HCTheme::LoadContFloors()
 		}
 	}
 
-	chdir("..");
+	if (0 == chdir("..")){}
 
 	return ret;
 }
@@ -224,11 +224,11 @@ bool HCTheme::LoadBreaks()
 				ret = false;
 			}
 
-			chdir("..");
+			if (0 == chdir("..")){}
 		}
 	}
 
-	chdir("..");
+	if (0 == chdir("..")){}
 
   return ret;
 }
@@ -266,11 +266,11 @@ bool HCTheme::LoadBars()
 				ret = false;
 			}
 
-			chdir("..");
+			if (0 == chdir("..")){}
 		}
 	}
 
-	chdir("..");
+	if (0 == chdir("..")){}
 
   return ret;
 }
@@ -308,11 +308,11 @@ bool HCTheme::LoadLadders()
 				ret = false;
 			}
 			
-			chdir("..");
+			if (0 == chdir("..")){}
 		}
 	}
 
-	chdir("..");
+	if (0 == chdir("..")){}
   
 	return ret;
 }
@@ -364,11 +364,11 @@ bool HCTheme::LoadObjects()
 				ret = false;
 			}
 			
-			chdir("..");
+			if (0 == chdir("..")){}
 		}
 	}
 
-	chdir("..");
+	if (0 == chdir("..")){}
 
   return ret;
 }
@@ -413,11 +413,11 @@ bool HCTheme::LoadRopes()
 				ret = false;
 			}
 
-			chdir("..");
+			if (0 == chdir("..")){}
 		}
 	}
 
-	chdir("..");
+	if (0 == chdir("..")){}
 
   return ret;
 }
@@ -489,11 +489,11 @@ bool HCTheme::LoadChar(const char *directory, JImageSprite ** &sprArr, s32 &num)
 				}
 			} // for every state
 			
-			chdir("..");
+			if (0 == chdir("..")){}
 		} // if chdir()
 	}
 
-	chdir("../..");
+	if (0 == chdir("../..")){}
 
 	return true;
 }
@@ -559,17 +559,17 @@ bool HCTheme::LoadDialogs()
 					!imgDialog[i-1][HCTDT_RIGHT].Load("right.tga"))
 			{
         char strcwd[256];
-        getcwd(strcwd, 256);
+        if (0 == getcwd(strcwd, 256)){}
         perror("error");
 				fprintf(stderr, "HCTheme: Couldn't load dialog. %s en dir %s\n", SDL_GetError(), strcwd);
 				ret = false;
 			}
 
-			chdir("..");
+			if (0 == chdir("..")){}
 		}
 	}
 
-	chdir("..");
+	if (0 == chdir("..")){}
 
   return ret;
 }
@@ -620,11 +620,11 @@ bool HCTheme::LoadNarratives()
 				ret = false;
 			}
 
-			chdir("..");
+			if (0 == chdir("..")){}
 		}
 	}
 
-	chdir("..");
+	if (0 == chdir("..")){}
 
   return ret;
 }
@@ -635,7 +635,7 @@ bool HCTheme::Load(const char *themeName)
 
 	char themeDir[PATH_MAX];
 	char curDir[PATH_MAX];
-	getcwd(curDir, PATH_MAX);
+	if (0 == getcwd(curDir, PATH_MAX)){}
 	
 	// Checks for the theme in any of:
 	// - installation directory
@@ -669,12 +669,12 @@ bool HCTheme::Load(const char *themeName)
 	{
 		fprintf(stderr, "HCTheme: Couldn't load resources.\n");
 
-		chdir(curDir);
+		if (0 == chdir(curDir)){}
 
 		return false;
 	}
 
-	chdir(curDir);
+	if (0 == chdir(curDir)){}
 
 	return true;
 }

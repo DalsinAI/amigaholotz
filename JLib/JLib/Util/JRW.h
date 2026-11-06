@@ -30,6 +30,8 @@
 #ifndef _JRW_INCLUDED
 #define _JRW_INCLUDED
 
+#include <string.h>
+
 #include <JLib/Util/JTypes.h>
 #include <JLib/Util/JObject.h>
 #include <zlib.h>
@@ -139,7 +141,7 @@ class JRW : public JObject
    * @param  buff Buffer to fill with the read data uncompressed.
    * @return Uncompressed size of the data. 
    */
-	u32 ZRead(void **buff);
+	u32 ZRead(u8 **buff);
 
   /** Reads a bool data. The bool is stored as a single byte.
    * @param  buff Variable with the result.
@@ -194,6 +196,21 @@ class JRW : public JObject
    * @return Number of bytes read or 0 (zero) if an error occured. 
    */
   u32 ReadLE32(s32 *buff) {if (0 < SDL_RWread(rwops, buff, 4, 1)) {*buff = SDL_SwapLE32(*buff); return 4;} return 0;}
+
+  /** Reads 32-bit IEEE-754 float data in little- endian format.
+   * @param  buff Variable with the result in the machine weight.
+   * @return Number of bytes read or 0 (zero) if an error occured. 
+   */
+  u32 ReadLE32(float *fbuff)
+	{
+		u32 ibuff;
+		if (ReadLE32(&ibuff) == 4)
+		{
+			memcpy(fbuff, &ibuff, sizeof(float));
+			return 4;
+		}
+		return 0;
+	}
 
   /** Reads a 32-bit unsigned data in big-endian format.
    * @param  buff Variable with the result in the machine weight.
@@ -283,6 +300,17 @@ class JRW : public JObject
    * @return Number of bytes written or 0 (zero) if an error occured. 
    */
   u32 WriteLE32(s32 *buff) {s32 v = SDL_SwapLE32(*buff); return SDL_RWwrite(rwops, &v, 4, 1);}
+
+  /** Writes a 32-bit IEEE-754 float data in little-endian format.
+   * @param  buff Variable with the data in the machine weight.
+   * @return Number of bytes written or 0 (zero) if an error occured. 
+   */
+  u32 WriteLE32(const float *fbuff)
+	{
+		u32 ibuff;
+		memcpy(&ibuff, fbuff, sizeof(u32));
+		return WriteLE32(&ibuff);
+	}
 
   /** Writes a 32-bit unsigned data in big-endian format.
    * @param  buff Variable with the data in the machine weight.

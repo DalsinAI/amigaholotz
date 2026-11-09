@@ -100,7 +100,6 @@ dist: $(BUILD)/$(PROG) $(ICONS) AMIGA_PORT.md
 	for f in LICENSE.txt SDL_ttf-COPYING.txt; do cp amiga/icons/ReadMe.info $(OUT)/$$f.info; done
 	# res/ alone gets an icon: the game lists res/'s drawers (its stories)
 	# by name, and would offer a .info beside each as one more
-	cp amiga/icons/Folder.info $(OUT)/res.info
 	cp amiga/icons/HolotzCastle-drawer.info dist/HolotzCastle.info
 
 -include $(OBJS:.o=.d)

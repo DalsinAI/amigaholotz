@@ -79,7 +79,7 @@ What was changed
 - The drawer's sounds (res/sound) are 16-bit PCM: the game's are MS ADPCM,
   which the mixer shim does not read (amiga/tools/msadpcm2pcm.py, checked
   against GStreamer's decoder).
-- Only res/ gets a Workbench icon: the game lists res/stories by name.
+- The data drawers get no Workbench icons (the game lists res/stories by name).
 
 
 Licences

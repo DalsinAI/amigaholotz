@@ -94,6 +94,7 @@ dist: $(BUILD)/$(PROG) $(ICONS) AMIGA_PORT.md
 	cp -R res $(OUT)/res
 	python3 amiga/tools/msadpcm2pcm.py $(OUT)/res/sound
 	cp AMIGA_PORT.md $(OUT)/ReadMe
+	cp amiga/Controls $(OUT)/Controls
 	cp LICENSE.txt $(OUT)/LICENSE.txt
 	cp amiga/sdl_ttf/COPYING $(OUT)/SDL_ttf-COPYING.txt
 	cp amiga/icons/HolotzCastle.info amiga/icons/ReadMe.info $(OUT)/
